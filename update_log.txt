@@ -1,0 +1,11 @@
+UPDATE!!
+event page *(F)= firish
+
+-view data function (F)
+-sort data function (F)
+-search data function (F)
+
+-detail page 
+-apply function
+
+
