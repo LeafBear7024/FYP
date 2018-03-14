@@ -60,7 +60,7 @@ include("master.php");
               <h4><?=$username?></h4>
               <p><?=$description?></p>
             </div>
-            <button type="button" class="btn btn-info interested" data-toggle="modal" data-target="#createEvent">I'm Interested!</button>
+            <button type="button" class="btn btn-info interested" data-toggle="modal" data-target="#createEvent" data-serviceprovider="<?=$username?>">I'm Interested!</button>
           </div>
     <?php
                 }
@@ -77,9 +77,17 @@ include("master.php");
              <button type="button" class="close" data-dismiss="modal">&times;</button>               
           </div>  
           <div class="modal-body">  
-             <label>Code</label>  
-             <input type="text" name="code" id="code" class="form-control" />  
-             <br />  
+             <label>Service Provider</label>  
+             <input type="text" name="serviceprovider" id="serviceprovider" class="form-control" / readonly> 
+             <label>Your Contact Info</label>  
+             <input type="text" name="contact" id="eventContact" class="form-control" />  
+             <label>Event Date</label>  
+             <input id="eventDate" type="text" class="form-control" /> 
+             <label>Event Information</label>  
+             <input type="text" name="eventinfo" id="eventInfo" class="form-control" />  
+             <label>Event Location</label>  
+             <input type="text" name="eventinfo" id="eventLocation" class="form-control" /> 
+              <br />
              <button type="button" name="submit" id="submit" class="btn btn-primary">Submit</button>  
           </div>  
          </div>  
@@ -142,12 +150,21 @@ for (var i = 0; i < btns.length; i++) {
   });
 }
 $(document).ready(function() {
+    $('#eventDate').datetimepicker({
+      //datepicker:true,
+      //timepicker:false,
+      //format:'d.m.Y'
+    });
     var $grid = $('.grid').imagesLoaded( function() {
       $grid.masonry({
         itemSelector: '.grid-item',
         percentPosition: true,
         columnWidth: '.grid-sizer'
       }); 
+    });
+    
+    $('.interested').click(function() {
+        $('#serviceprovider').val($(this).attr('data-serviceprovider'));
     });
 
     $('.content').on('click', function(e) {
@@ -169,11 +186,11 @@ $(document).ready(function() {
                             thumb: "gallery/" + userid + "/" + item.filename,
                         })
                     });
+                    $(this).lightGallery({
+                        dynamic: true,
+                        dynamicEl: galleryInfo
+                    });
                 }
-                $(this).lightGallery({
-                    dynamic: true,
-                    dynamicEl: galleryInfo
-                });
             }  
         });
     });
