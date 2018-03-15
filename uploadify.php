@@ -33,7 +33,6 @@ if(isset($_POST['userid'])) {
                 $query = "  
                 INSERT gallery (userid, filename) VALUES('" . $userid . "', '" . $newFileName ."')
                 ";  
-                print_r($query);
                 $result = mysqli_query($DBcon, $query);  
                 echo '1';
             } else {

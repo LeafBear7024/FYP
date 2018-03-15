@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 11, 2018 at 03:57 PM
+-- Generation Time: Mar 15, 2018 at 05:29 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 5.6.33
 
@@ -30,19 +30,21 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `event` (
   `id` int(60) NOT NULL,
-  `event_name` varchar(100) NOT NULL,
-  `event_location` varchar(100) NOT NULL,
-  `event_date` date NOT NULL,
-  `event_contact` varchar(100) NOT NULL
+  `eventName` varchar(100) NOT NULL,
+  `eventInfo` varchar(200) NOT NULL,
+  `eventLocation` varchar(100) NOT NULL,
+  `eventDate` date NOT NULL,
+  `eventContact` varchar(100) NOT NULL,
+  `serviceproviderid` int(11) NOT NULL,
+  `requestedbyid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `event`
 --
 
-INSERT INTO `event` (`id`, `event_name`, `event_location`, `event_date`, `event_contact`) VALUES
-(1, 'wedding1', 'hk', '2018-02-07', '25523363'),
-(2, '213123', '213213', '2018-02-09', '12321321321');
+INSERT INTO `event` (`id`, `eventName`, `eventInfo`, `eventLocation`, `eventDate`, `eventContact`, `serviceproviderid`, `requestedbyid`) VALUES
+(1, 'photo taking', 'I would like to hire you to help me take photo ', 'Central', '2018-03-22', '123456', 26, 28);
 
 -- --------------------------------------------------------
 
@@ -149,7 +151,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `gallery`

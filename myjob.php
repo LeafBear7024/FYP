@@ -18,10 +18,10 @@ ob_start();
       <thead>
         <tr ng-click="selectPerson()">
           <th data-column-id="id" data-type="numeric">ID</th>
-          <th data-column-id="event_name">Event Name</th>
-          <th data-column-id="event_location">Event location</th> 
-          <th data-column-id="event_date">Event Date</th>
-          <th data-column-id="event_contact">Event contact</th>
+          <th data-column-id="eventName">Event Name</th>
+          <th data-column-id="eventLocation">Event location</th> 
+          <th data-column-id="eventDate">Event Date</th>
+          <th data-column-id="eventContact">Event contact</th>
           <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commands</th>
         </tr>
       </thead>  
@@ -85,7 +85,7 @@ $result = mysqli_query($DBcon, $query);
 $output = '';
 while($row = mysqli_fetch_array($result))
 {
-  $output .= '<option value="'.$row["id"].'">'.$row["event_name"].'</option>';
+  $output .= '<option value="'.$row["id"].'">'.$row["eventName"].'</option>';
 }
 ?>
 

@@ -34,7 +34,7 @@ require_once 'db_connect.php';
         
      <script src="https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/datejs/date.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/css/lightgallery.css">
-     <script src="js/jquery.datetimepicker.js" type="text/javascript"></script>
+     <script src="js/jquery.datetimepicker.full.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="css/jquery.datetimepicker.css">
         <style>
             #logo {

@@ -45,7 +45,7 @@ include("master.php");
                     $description = $row['description'];
                     $profilepic = $row['profilepic'] == ''? "image/unknown.jpg": "/fyp/upload/profilepic/" . $row['profilepic'];
                     $specialist = $row['specialist'];
-                    $userid = $row['id'];
+                    $serviceproviderid = $row['id'];
                     switch($specialist) {
                         case "1": $speciality = "Photographer"; break;
                         case "2": $speciality = "MakeupArtist"; break;
@@ -55,12 +55,12 @@ include("master.php");
                     }
     ?>
           <div class="grid-item column <?=$speciality?>">
-            <div class="content" id="<?=$userid?>">
+            <div class="content" id="<?=$serviceproviderid?>">
               <img src="<?=$profilepic?>" alt="<?=$speciality?>" style="width:100%">
               <h4><?=$username?></h4>
               <p><?=$description?></p>
             </div>
-            <button type="button" class="btn btn-info interested" data-toggle="modal" data-target="#createEvent" data-serviceprovider="<?=$username?>">I'm Interested!</button>
+            <button type="button" class="btn btn-info interested" data-toggle="modal" data-serviceprovider="<?=$username?>" data-serviceproviderid="<?=$serviceproviderid?>">I'm Interested!</button>
           </div>
     <?php
                 }
@@ -79,16 +79,20 @@ include("master.php");
           <div class="modal-body">  
              <label>Service Provider</label>  
              <input type="text" name="serviceprovider" id="serviceprovider" class="form-control" / readonly> 
-             <label>Your Contact Info</label>  
-             <input type="text" name="contact" id="eventContact" class="form-control" />  
+             <label>Event Name</label>  
+             <input type="text" name="contact" id="eventName" class="form-control" required/>  
              <label>Event Date</label>  
-             <input id="eventDate" type="text" class="form-control" /> 
+             <input id="eventDate" type="text" class="form-control" required/> 
              <label>Event Information</label>  
-             <input type="text" name="eventinfo" id="eventInfo" class="form-control" />  
+             <input type="text" name="eventinfo" id="eventInfo" class="form-control" required/>  
              <label>Event Location</label>  
-             <input type="text" name="eventinfo" id="eventLocation" class="form-control" /> 
+             <input type="text" name="eventinfo" id="eventLocation" class="form-control" required/> 
+             <label>Your Contact Info</label>  
+             <input type="text" name="contact" id="eventContact" class="form-control" required/>  
+             <input type="hidden" name="requestedbyid" id="requestedbyid" value="<?=$_SESSION['userid']?>" />
+             <input type="hidden" name="serviceproviderid" id="serviceproviderid"/>
               <br />
-             <button type="button" name="submit" id="submit" class="btn btn-primary">Submit</button>  
+             <button type="button" name="submit" id="submitEvent" class="btn btn-primary">Submit</button>  
           </div>  
          </div>  
       </div>  
@@ -152,8 +156,8 @@ for (var i = 0; i < btns.length; i++) {
 $(document).ready(function() {
     $('#eventDate').datetimepicker({
       //datepicker:true,
-      //timepicker:false,
-      //format:'d.m.Y'
+      timepicker:false,
+      format:'Y-m-d'
     });
     var $grid = $('.grid').imagesLoaded( function() {
       $grid.masonry({
@@ -164,7 +168,38 @@ $(document).ready(function() {
     });
     
     $('.interested').click(function() {
-        $('#serviceprovider').val($(this).attr('data-serviceprovider'));
+        // check if user login, prompt login box if user has not yet logged in
+        if('<?=isset($_SESSION['userid'])?>' == 1) {
+            $('#serviceprovider').val($(this).attr('data-serviceprovider'));
+            $('#serviceproviderid').val($(this).attr('data-serviceproviderid'));
+            jQuery.noConflict(); 
+            $('#createEvent').modal('show');
+        } else {
+            alert('Please sign in before apply for an event');
+            $('#login_button').click();
+        }
+    });
+    
+    $('#submitEvent').click(function() {
+        var eventName = $('#eventName').val();
+        var eventInfo = $('#eventInfo').val();
+        var eventLocation = $('#eventLocation').val();
+        var eventDate = $('#eventDate').val();
+        var eventContact = $('#eventContact').val();
+        var serviceproviderid = $('#serviceproviderid').val();
+        var requestedbyid = $('#requestedbyid').val();
+        $.ajax({  
+            url:"createevent.php",  
+            method:"POST",  
+            data: {eventName:eventName,eventInfo:eventInfo,eventLocation:eventLocation,eventDate:eventDate,eventContact:eventContact,serviceproviderid:serviceproviderid,requestedbyid:requestedbyid},  
+            success:function(data) {  
+                if(data == 1) {
+                    alert("Event created successfully!");
+                } else {
+                    alert("There is an error occurred, please try again later");
+                }
+            }  
+        });
     });
 
     $('.content').on('click', function(e) {
