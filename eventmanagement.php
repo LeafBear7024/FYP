@@ -1,6 +1,5 @@
 <?php
-$pagetitle = "My Job";
-ob_start();
+$pagetitle = "Event Management";
 ?>
 <?php
 //將緩衝區的內容放到變數裏面，然後清除緩衝區
@@ -8,13 +7,14 @@ $pagemaincontent = ob_get_contents();
 ob_end_clean();
 //套用主板頁面
 include("master.php");
+
 ?>
 
 
 
 <!-- Page Put in Content-->
 <div id="band" class="container text-left" style="margin-top:50px" >
-  <h1>My Job</h1>
+  <h1>Event Management</h1>
   
   <div class="table-responsive">
   <div>
@@ -23,11 +23,11 @@ include("master.php");
     <table id="event_data" class="table table-condensed table-hover table-striped">
       <thead>
         <tr ng-click="selectPerson()">
-          <th data-column-id="eventName">Job Name</th>
-          <th data-column-id="eventInfo">Job Info</th>
-          <th data-column-id="eventLocation">Job location</th> 
-          <th data-column-id="eventDate">Job Date</th>
-          <th data-column-id="eventContact">Job contact</th>
+          <th data-column-id="eventName">Event Name</th>
+          <th data-column-id="eventInfo">Event Info</th>
+          <th data-column-id="eventLocation">Event location</th> 
+          <th data-column-id="eventDate">Event Date</th>
+          <th data-column-id="eventContact">Event contact</th>
           <th data-column-id="status" data-type="numeric">Status</th>
           <th data-column-id="commands" data-formatter="commands" data-sortable="false">Actions</th>
         </tr>
@@ -66,18 +66,17 @@ include("master.php");
     post: function()
     {
         return {
-            userid: "<?=$_SESSION['userid']?>"
+            userrole: "<?=$_SESSION['role']?>"
         };
     },
     labels: {
-        noResults: 'No Job is found right now!'
+        noResults: 'No event is found right now!'
     },
-    url: "getmyjob.php",
+    url: "getallevent.php",
     formatters: {
      "commands": function(column, row)
      {   
-    return"<button type='button' class='btn btn-success btn-xs update' data-row-id='"+row.id+"'>Accpet</button>"+
-    "&nbsp;<button type='button' class='btn btn-danger btn-xs delete' data-row-id='"+row.id+"'>Reject</button>";
+    return "<button type='button' class='btn btn-danger btn-xs delete' data-row-id='"+row.id+"'>Delete</button>";
 
      }
     }

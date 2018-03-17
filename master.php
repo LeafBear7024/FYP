@@ -165,13 +165,19 @@ h1 {
       
       <ul class="nav navbar-nav">
         <li>  <a href="/fyp/service.php">Serivce</a></li>
-        <li><a href="/fyp/myjob.php"">My Job</a></li>
-        <li><a href="/fyp/event.php"">My Events</a></li>
+        <?php if(isset($_SESSION['username'])) {?>
+          <li><a href="/fyp/myjob.php">My Job</a></li>
+        <li><a href="/fyp/myevent.php">My Events</a></li>
+          <?php } ?>
         <?php if(isset($_SESSION['username']) && ($_SESSION['role'] == 2 || $_SESSION['role'] == 5) ){?>
-        <li><a href="/fyp/mygallery.php"">My Gallery</a></li>
+        <li><a href="/fyp/mygallery.php">My Gallery</a></li>
         <?php  } ?>
-        <li><a href="/fyp/about_us.php"">About us</a></li>
+        <li><a href="/fyp/about_us.php">About us</a></li>
         <li><a href="/fyp/contact_us.php">Contact us</a></li>
+        <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 3) {?>
+        <li><a href="/fyp/usermanagement.php">User Management</a></li>
+        <li><a href="/fyp/eventmanagement.php">Event Management</a></li>
+        <?php  } ?>
       </ul>
 
       <div class="btn-group navbar-btn navbar-right">
