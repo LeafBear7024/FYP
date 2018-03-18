@@ -19,7 +19,7 @@ include("master.php");
   
   <div class="table-responsive">
   <div>
-    <div class="col-md-8">
+    <div class="col-md-12">
     
     <table id="event_data" class="table table-condensed table-hover table-striped">
       <thead>
@@ -29,11 +29,13 @@ include("master.php");
           <th data-column-id="contact">Contact</th>
           <th data-column-id="role">Role</th>
           <th data-column-id="createdatetime">Join date</th>
+          <th data-column-id="systemstatus">SystemStatus</th>
           <th data-column-id="commands" data-formatter="commands" data-sortable="false">Actions</th>
         </tr>
       </thead>  
     </table>
     </div>
+<!--
     <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading">Details</div>
@@ -55,11 +57,11 @@ include("master.php");
         </div>
       </div>
     </div>
+-->
 </div>
  <script>  
  $(document).ready(function(){  
-
-  var eventTable = $('#event_data').bootgrid({
+  var grid = $('#event_data').bootgrid({
     ajax: true,
     rowSelect: true,
     "serverSide": true,
@@ -70,16 +72,44 @@ include("master.php");
         };
     },
     labels: {
-        noResults: 'No Job is found right now!'
+        noResults: 'No user is found right now!'
     },
     url: "getalluser.php",
     formatters: {
-     "commands": function(column, row)
-     {   
-    return "<button type='button' class='btn btn-danger btn-xs delete' data-row-id='"+row.id+"'>Delete</button>";
-
-     }
+        "commands": function(column, row) {  
+            if(row.systemstatus == 'Active') {
+                return "<button type='button' class='btn btn-danger btn-xs Inactive' data-row-id='"+row.id+"'>Inactive</button>";
+            } else {
+               return "<button type='button' class='btn btn-success btn-xs Active' data-row-id='"+row.id+"'>Active</button>";
+            }
+        }
     }
+   }).on("loaded.rs.jquery.bootgrid", function() {
+    grid.find(".Inactive").on("click", function(e)
+    {
+        var clickedId = $(this).data("row-id");
+        var response = updateEvent(clickedId, 2);
+    }).end().find(".Active").on("click", function(e)
+    {
+        var clickedId = $(this).data("row-id");
+        var response = updateEvent(clickedId, 1);
+    });
    });
+     
+    function updateEvent(clickedId, action) {
+         $.ajax({  
+            url:"updateuser.php",  
+            method:"POST",  
+            data: {clickedId:clickedId, action:action},  
+            success:function(data) {  
+                if(data == 1) {
+                    alert("Update successfully");
+                    grid.bootgrid('reload');
+                } else {
+                    alert("There is an error when updateing");
+                }
+            }  
+        });
+    }
  });  
  </script>  

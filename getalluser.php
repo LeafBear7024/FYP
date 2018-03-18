@@ -43,6 +43,7 @@ $query .= "SELECT id
 			WHEN role = 5
 				THEN 'Service Provider(Free)'
 			END) AS role
+    ,CASE WHEN systemstatus = 1 THEN 'Active' ELSE 'Inactive' END as systemstatus
 FROM user ";
 
 if(!empty($_POST["searchPhrase"]))
