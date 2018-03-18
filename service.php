@@ -31,10 +31,14 @@ include("master.php");
     
   <div class="grid-sizer"></div>
     <?php
+        if(isset($_SESSION['userid'])) {
+            $currentUserId = $_SESSION['userid'];
+        } else {
+            $currentUserId = '';
+        }
         $query = "  
           SELECT * FROM user t1
-          WHERE role = 2 or role = 5 
-          ";  
+          WHERE role = 2 or role = 5";
           $result = mysqli_query($DBcon, $query);  
           if(mysqli_num_rows($result) > 0)  
           {  
@@ -157,7 +161,8 @@ $(document).ready(function() {
     $('#eventDate').datetimepicker({
       //datepicker:true,
       timepicker:false,
-      format:'Y-m-d'
+      format:'Y-m-d',
+      minDate: new Date()
     });
     var $grid = $('.grid').imagesLoaded( function() {
       $grid.masonry({

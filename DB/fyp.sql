@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 15, 2018 at 05:29 PM
+-- Generation Time: Mar 17, 2018 at 06:24 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 5.6.33
 
@@ -36,15 +36,20 @@ CREATE TABLE `event` (
   `eventDate` date NOT NULL,
   `eventContact` varchar(100) NOT NULL,
   `serviceproviderid` int(11) NOT NULL,
-  `requestedbyid` int(11) NOT NULL
+  `requestedbyid` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `event`
 --
 
-INSERT INTO `event` (`id`, `eventName`, `eventInfo`, `eventLocation`, `eventDate`, `eventContact`, `serviceproviderid`, `requestedbyid`) VALUES
-(1, 'photo taking', 'I would like to hire you to help me take photo ', 'Central', '2018-03-22', '123456', 26, 28);
+INSERT INTO `event` (`id`, `eventName`, `eventInfo`, `eventLocation`, `eventDate`, `eventContact`, `serviceproviderid`, `requestedbyid`, `status`) VALUES
+(1, 'photo taking', 'I would like to hire you to help me take photo ', 'Central', '2018-03-22', '123456', 26, 28, 1),
+(2, 'test', 'test', 'hk', '2018-03-22', '2134', 13, 28, 1),
+(3, 'test', 'test', 'hk', '2018-03-21', '123123', 14, 11, 1),
+(4, 'test', 'test', 'hk', '2018-03-21', '12345', 18, 25, 1),
+(5, 'test', '123', '123', '2018-03-20', '123', 25, 25, 1);
 
 -- --------------------------------------------------------
 
@@ -151,7 +156,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `gallery`
