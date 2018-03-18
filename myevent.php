@@ -28,7 +28,8 @@ include("master.php");
           <th data-column-id="eventLocation">Event location</th> 
           <th data-column-id="eventDate">Event Date</th>
           <th data-column-id="eventContact">Event contact</th>
-          <th data-column-id="status" data-type="numeric">Status</th>
+          <th data-column-id="response">Response</th>
+          <th data-column-id="systemstatus">SystemStatus</th>
           <th data-column-id="commands" data-formatter="commands" data-sortable="false">Actions</th>
         </tr>
       </thead>  
@@ -56,6 +57,61 @@ include("master.php");
       </div>
     </div>
 </div>
+<script>  
+ $(document).ready(function(){  
+  var grid = $('#event_data').bootgrid({
+    ajax: true,
+    rowSelect: true,
+    "serverSide": true,
+    post: function()
+    {
+        return {
+            userid: "<?=$_SESSION['userid']?>"
+        };
+    },
+    labels: {
+        noResults: 'No event is found right now!'
+    },
+    url: "getmyevent.php",
+    formatters: {
+        "commands": function(column, row) {  
+            if(row.systemstatus == 'Active') {
+                return "<button type='button' class='btn btn-danger btn-xs inactive' data-row-id='"+row.id+"'>Inactive</button>";
+            } else {
+               return "<button type='button' class='btn btn-success btn-xs active' data-row-id='"+row.id+"'>Active</button>";
+            }
+        }
+    }
+   }).on("loaded.rs.jquery.bootgrid", function() {
+    grid.find(".inactive").on("click", function(e)
+    {
+        var clickedId = $(this).data("row-id");
+        var response = updateEvent(clickedId, 2);
+    }).end().find(".active").on("click", function(e)
+    {
+        var clickedId = $(this).data("row-id");
+        var response = updateEvent(clickedId, 1);
+    });
+   });
+     
+    function updateEvent(clickedId, action) {
+         $.ajax({  
+            url:"updateevent.php",  
+            method:"POST",  
+            data: {clickedId:clickedId, action:action},  
+            success:function(data) {  
+                if(data == 1) {
+                    alert("Update successfully");
+                    grid.bootgrid('reload');
+                } else {
+                    alert("There is an error when updateing");
+                }
+            }  
+        });
+    }
+ });  
+ </script>  
+<!--
  <script>  
  $(document).ready(function(){  
 
@@ -82,4 +138,4 @@ include("master.php");
     }
    });
  });  
- </script>  
+ </script>  -->
