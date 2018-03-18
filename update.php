@@ -1,5 +1,6 @@
 <?php
-$pagetitle = "Event Management";
+$pagetitle = "My Event";
+ob_start();
 ?>
 <?php
 //將緩衝區的內容放到變數裏面，然後清除緩衝區
@@ -7,18 +8,17 @@ $pagemaincontent = ob_get_contents();
 ob_end_clean();
 //套用主板頁面
 include("master.php");
-
 ?>
 
 
 
 <!-- Page Put in Content-->
 <div id="band" class="container text-left" style="margin-top:50px" >
-  <h1>Event Management</h1>
+  <h1>My Event</h1>
   
   <div class="table-responsive">
   <div>
-    <div class="col-md-12">
+    <div class="col-md-8">
     
     <table id="event_data" class="table table-condensed table-hover table-striped">
       <thead>
@@ -35,7 +35,6 @@ include("master.php");
       </thead>  
     </table>
     </div>
-<!--
     <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading">Details</div>
@@ -57,9 +56,8 @@ include("master.php");
         </div>
       </div>
     </div>
--->
 </div>
- <script>  
+<script>  
  $(document).ready(function(){  
   var grid = $('#event_data').bootgrid({
     ajax: true,
@@ -68,13 +66,13 @@ include("master.php");
     post: function()
     {
         return {
-            userrole: "<?=$_SESSION['role']?>"
+            userid: "<?=$_SESSION['userid']?>"
         };
     },
     labels: {
         noResults: 'No event is found right now!'
     },
-    url: "getallevent.php",
+    url: "getmyevent.php",
     formatters: {
         "commands": function(column, row) {  
             if(row.systemstatus == 'Active') {

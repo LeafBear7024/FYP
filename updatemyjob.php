@@ -1,8 +1,5 @@
 <?php
 include("db_connect.php");
-if($_POST['userrole'] != 3) {
-    exit;
-}
 $query = '';
 $data = array();
 $records_per_page = 10;
@@ -26,31 +23,33 @@ $start_from = ($current_page_number - 1) * $records_per_page;
 
 // check if that user is serviceprovider / requester
 $query .= "SELECT id
-	,username
-	,email
-	,createdatetime
-    ,contact
+	,eventName
+	,eventInfo
+	,eventLocation
+	,eventDate
+	,eventContact
+	,serviceproviderid
+	,requestedbyid
 	,COALESCE(CASE 
-			WHEN role = 1
-				THEN 'Admin'
+			WHEN RESPONSE = 1
+				THEN 'Pending'
 			END, CASE 
-			WHEN role = 2
-				THEN 'Service Provider(Premium)'
+			WHEN RESPONSE = 2
+				THEN 'Accpeted'
 			END, CASE 
-			WHEN role = 3
-				THEN 'Inactive'
-            END, CASE 
-			WHEN role = 5
-				THEN 'Service Provider(Free)'
-			END) AS role
+			WHEN RESPONSE = 1
+				THEN 'Rejected'
+			END) AS response
     ,CASE WHEN systemstatus = 1 THEN 'Active' ELSE 'Inactive' END as systemstatus
-FROM user ";
+FROM event WHERE requestedbyid = ". $_POST['userid'] . " ";
 
 if(!empty($_POST["searchPhrase"]))
 {
- $query .= 'AND event.username LIKE "%'.$_POST["searchPhrase"].'%" ';
- $query .= 'OR event.email LIKE "%'.$_POST["searchPhrase"].'%" ';
- $query .= 'OR event.createdatetime LIKE "%'.$_POST["searchPhrase"].'%" ';
+ $query .= 'AND (event.id LIKE "%'.$_POST["searchPhrase"].'%" ';
+ $query .= 'OR event.eventName LIKE "%'.$_POST["searchPhrase"].'%" ';
+ $query .= 'OR event.eventLocation LIKE "%'.$_POST["searchPhrase"].'%" ';
+ $query .= 'OR event.eventDate LIKE "%'.$_POST["searchPhrase"].'%" ';
+ $query .= 'OR event.eventContact LIKE "%'.$_POST["searchPhrase"].'%" ) ';
 }
 
 $order_by = '';
@@ -63,7 +62,7 @@ if(isset($_POST["sort"]) && is_array($_POST["sort"]))
 }
 else
 {
- $query .= 'ORDER BY user.id DESC ';
+ $query .= 'ORDER BY event.id DESC ';
 }
 if($order_by != '')
 {
@@ -83,9 +82,8 @@ if($result) {
     }
 }
 
-$query1 = "SELECT * FROM user ";
-$result1 = mysqli_query($DBcon, $query1);
-$total_records = mysqli_num_rows($result1);
+$result1 = mysqli_query($DBcon, $query);
+$total_records = mysqli_num_rows($result);
 
 $output = array(
  'current'  => intval($_POST["current"]),

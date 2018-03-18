@@ -31,15 +31,16 @@ $query .= "SELECT id
 	,serviceproviderid
 	,requestedbyid
 	,COALESCE(CASE 
-			WHEN STATUS = 1
+			WHEN RESPONSE = 1
 				THEN 'Pending'
 			END, CASE 
-			WHEN STATUS = 2
+			WHEN RESPONSE = 2
 				THEN 'Accpeted'
 			END, CASE 
-			WHEN STATUS = 1
+			WHEN RESPONSE = 3
 				THEN 'Rejected'
-			END) AS status
+			END) AS response
+    ,CASE WHEN systemstatus = 1 THEN 'Active' ELSE 'Inactive' END as systemstatus
 FROM event WHERE requestedbyid = ". $_POST['userid'] . " ";
 
 if(!empty($_POST["searchPhrase"]))

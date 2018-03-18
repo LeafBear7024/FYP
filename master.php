@@ -175,8 +175,13 @@ h1 {
         <li><a href="/fyp/about_us.php">About us</a></li>
         <li><a href="/fyp/contact_us.php">Contact us</a></li>
         <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 3) {?>
-        <li><a href="/fyp/usermanagement.php">User Management</a></li>
-        <li><a href="/fyp/eventmanagement.php">Event Management</a></li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Management</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="/fyp/usermanagement.php">User Management</a></li>
+                <li><a class="dropdown-item" href="/fyp/eventmanagement.php">Event Management</a></li>
+              </ul>
+          </li>
         <?php  } ?>
       </ul>
 
