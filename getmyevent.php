@@ -37,7 +37,7 @@ $query .= "SELECT id
 			WHEN RESPONSE = 2
 				THEN 'Accpeted'
 			END, CASE 
-			WHEN RESPONSE = 1
+			WHEN RESPONSE = 3
 				THEN 'Rejected'
 			END) AS response
     ,CASE WHEN systemstatus = 1 THEN 'Active' ELSE 'Inactive' END as systemstatus

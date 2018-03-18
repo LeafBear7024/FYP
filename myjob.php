@@ -70,33 +70,32 @@ include("master.php");
         };
     },
     labels: {
-        noResults: 'No event is found right now!'
+        noResults: 'No job is found right now!'
     },
     url: "getmyevent.php",
     formatters: {
         "commands": function(column, row) {  
-            if(row.systemstatus == 'Active') {
-                return "<button type='button' class='btn btn-danger btn-xs inactive' data-row-id='"+row.id+"'>Inactive</button>";
-            } else {
-               return "<button type='button' class='btn btn-success btn-xs active' data-row-id='"+row.id+"'>Active</button>";
+            if(row.response == 'Pending') {
+                return "<button type='button' class='btn btn-danger btn-xs reject' data-row-id='"+row.id+"'>Reject</button>" + 
+                "&nbsp;<button type='button' class='btn btn-success btn-xs accept' data-row-id='"+row.id+"'>Accpet</button>";
             }
         }
     }
    }).on("loaded.rs.jquery.bootgrid", function() {
-    grid.find(".inactive").on("click", function(e)
+    grid.find(".accept").on("click", function(e)
     {
         var clickedId = $(this).data("row-id");
         var response = updateEvent(clickedId, 2);
-    }).end().find(".active").on("click", function(e)
+    }).end().find(".reject").on("click", function(e)
     {
         var clickedId = $(this).data("row-id");
-        var response = updateEvent(clickedId, 1);
+        var response = updateEvent(clickedId, 3);
     });
    });
      
     function updateEvent(clickedId, action) {
          $.ajax({  
-            url:"updateevent.php",  
+            url:"updatemyjob.php",  
             method:"POST",  
             data: {clickedId:clickedId, action:action},  
             success:function(data) {  

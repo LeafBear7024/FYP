@@ -76,18 +76,18 @@ include("master.php");
     formatters: {
         "commands": function(column, row) {  
             if(row.systemstatus == 'Active') {
-                return "<button type='button' class='btn btn-danger btn-xs inactive' data-row-id='"+row.id+"'>Inactive</button>";
+                return "<button type='button' class='btn btn-danger btn-xs Inactive' data-row-id='"+row.id+"'>Inactive</button>";
             } else {
-               return "<button type='button' class='btn btn-success btn-xs active' data-row-id='"+row.id+"'>Active</button>";
+               return "<button type='button' class='btn btn-success btn-xs Active' data-row-id='"+row.id+"'>Active</button>";
             }
         }
     }
    }).on("loaded.rs.jquery.bootgrid", function() {
-    grid.find(".inactive").on("click", function(e)
+    grid.find(".Inactive").on("click", function(e)
     {
         var clickedId = $(this).data("row-id");
         var response = updateEvent(clickedId, 2);
-    }).end().find(".active").on("click", function(e)
+    }).end().find(".Active").on("click", function(e)
     {
         var clickedId = $(this).data("row-id");
         var response = updateEvent(clickedId, 1);
