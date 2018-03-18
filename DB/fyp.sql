@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 18, 2018 at 06:31 AM
+-- Generation Time: Mar 18, 2018 at 07:41 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 5.6.33
 
@@ -47,9 +47,9 @@ CREATE TABLE `event` (
 
 INSERT INTO `event` (`id`, `eventName`, `eventInfo`, `eventLocation`, `eventDate`, `eventContact`, `serviceproviderid`, `requestedbyid`, `response`, `systemstatus`) VALUES
 (1, 'photo taking', 'I would like to hire you to help me take photo ', 'Central', '2018-03-22', '123456', 26, 28, 1, 1),
-(2, 'test', 'test', 'hk', '2018-03-22', '2134', 13, 28, 1, 2),
+(2, 'test', 'test', 'hk', '2018-03-22', '2134', 13, 28, 1, 1),
 (3, 'test', 'test', 'hk', '2018-03-21', '123123', 14, 11, 1, 1),
-(4, 'test', 'test', 'hk', '2018-03-21', '12345', 18, 25, 3, 2),
+(4, 'test', 'test', 'hk', '2018-03-21', '12345', 18, 25, 3, 1),
 (5, 'test', '123', '123', '2018-03-20', '123', 25, 25, 2, 1);
 
 -- --------------------------------------------------------
@@ -98,6 +98,7 @@ CREATE TABLE `user` (
   `specialist` int(11) DEFAULT NULL,
   `workingexp` int(11) DEFAULT NULL,
   `profilepic` varchar(100) DEFAULT NULL,
+  `systemstatus` int(11) NOT NULL DEFAULT '1',
   `createdatetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -105,29 +106,27 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `contact`, `description`, `budget`, `specialist`, `workingexp`, `profilepic`, `createdatetime`) VALUES
-(1, 'admin', 'chun7024@gmail.com', '123456', 3, NULL, '', NULL, NULL, NULL, '5aa39e790102b.png', '2018-03-06 13:26:15'),
-(2, 'CLL9', '', '123456', 1, NULL, '', NULL, NULL, NULL, '', '2018-03-06 13:26:15'),
-(8, '123', '123@123.com', '$2y$10$wc3glcS7wRKDnB5HsvGsYegZZRl8WaLxh4pFwWYSTCnVdogS8aQMy', 1, NULL, '', NULL, NULL, NULL, '', '2018-03-06 13:26:15'),
-(9, '123', '123@D.COM', '123123', 1, NULL, '', NULL, NULL, NULL, '', '2018-03-06 13:26:15'),
-(10, '123', '123@abcd.com', '123456', 1, NULL, '', NULL, NULL, NULL, '', '2018-03-06 13:26:15'),
-(11, 'issac', 'sadsa@faf.com', '123456', 1, NULL, '', NULL, NULL, NULL, '', '2018-03-06 13:26:15'),
-(12, '123', 'sadas@asf.com', '1234', 1, NULL, '', NULL, NULL, NULL, '', '2018-03-06 13:26:15'),
-(13, 'test', 'test@gmail.com', '123456', 2, NULL, '', NULL, NULL, NULL, '5a9a6673c01f9.jpg', '2018-03-06 13:26:15'),
-(14, 'test123', 'test123@gmail.com', '213', 2, NULL, '', NULL, 3, NULL, '', '2018-03-06 13:26:15'),
-(15, 'test1234', 'test1234@gmail.com', '213', 1, NULL, '', NULL, NULL, NULL, '', '2018-03-06 13:26:15'),
-(16, '213123', '12312', '123123', 1, NULL, '', NULL, NULL, NULL, '', '2018-03-06 13:26:15'),
-(17, '123123123123', '12312312', '123213123123', 1, NULL, '', NULL, NULL, NULL, '', '2018-03-06 13:26:15'),
-(18, 'issac123', 'asd@fdasf.com', '21sad', 2, NULL, '', NULL, 2, NULL, '', '2018-03-06 13:32:55'),
-(21, 'sadas', 'asdfQ@sac.com', '123213', 0, 0, '', 0, 0, 0, NULL, '2018-03-06 14:02:53'),
-(22, 'asdasd', 'asdsadasd@dasd.com', '12342345', 1, 314314, '', 1, 1, 1, NULL, '2018-03-06 14:03:28'),
-(23, 'normaluser', 'asd@asfda.com', '123145', 0, 0, '', 0, 0, 0, NULL, '2018-03-06 14:04:10'),
-(24, 'test123213', 'asfdsafd@asdas.xcom', '123123', 2, 124214, 'This is for description', 1, 1, 1, '5aa3f78dc0876.jpg', '2018-03-06 14:47:11'),
-(25, 'issacbiz', 'sacdsa@asdfsa.com', '123456', 2, 1431431, 'I am model', 1, 2, 1, '5aa3f76d85350.jpg', '2018-03-08 13:29:12'),
-(26, 'issacbiz2', 'wcas@casfasc.com', '123456', 2, 14124, 'I am good at taking photo', 1, 4, 1, '5aa3f73f09f46.jpg', '2018-03-10 18:43:34'),
-(28, 'freeuser', 'asdsa@Qasc.com', '123456', 5, 1232134, 'This is free user', 2, 3, 3, NULL, '2018-02-05 18:50:39'),
-(30, 'test12345', 'asdsa@asda.com', '123456', 1, NULL, NULL, NULL, NULL, NULL, NULL, '2018-03-18 13:15:07'),
-(31, 'tryuser', 'wdsa@asdsa.com', '123456', 5, 213123, 'im test', 1, 2, 3, NULL, '2018-03-18 13:15:51');
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `contact`, `description`, `budget`, `specialist`, `workingexp`, `profilepic`, `systemstatus`, `createdatetime`) VALUES
+(1, 'admin', 'chun7024@gmail.com', '123456', 3, NULL, '', NULL, NULL, NULL, '5aa39e790102b.png', 1, '2018-03-06 13:26:15'),
+(2, 'CLL9', '', '123456', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
+(8, '123', '123@123.com', '$2y$10$wc3glcS7wRKDnB5HsvGsYegZZRl8WaLxh4pFwWYSTCnVdogS8aQMy', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
+(9, '123', '123@D.COM', '123123', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
+(10, '123', '123@abcd.com', '123456', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
+(11, 'issac', 'sadsa@faf.com', '123456', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
+(12, '123', 'sadas@asf.com', '1234', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
+(13, 'test', 'test@gmail.com', '123456', 2, NULL, '', NULL, NULL, NULL, '5a9a6673c01f9.jpg', 1, '2018-03-06 13:26:15'),
+(14, 'test123', 'test123@gmail.com', '213', 2, NULL, '', NULL, 3, NULL, '', 1, '2018-03-06 13:26:15'),
+(15, 'test1234', 'test1234@gmail.com', '213', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
+(16, '213123', '12312', '123123', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
+(17, '123123123123', '12312312', '123213123123', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
+(18, 'issac123', 'asd@fdasf.com', '21sad', 2, NULL, '', NULL, 2, NULL, '', 1, '2018-03-06 13:32:55'),
+(22, 'asdasd', 'asdsadasd@dasd.com', '12342345', 1, 314314, '', 1, 1, 1, NULL, 1, '2018-03-06 14:03:28'),
+(24, 'test123213', 'asfdsafd@asdas.xcom', '123123', 2, 124214, 'This is for description', 1, 1, 1, '5aa3f78dc0876.jpg', 1, '2018-03-06 14:47:11'),
+(25, 'issacbiz', 'sacdsa@asdfsa.com', '123456', 2, 1431431, 'I am model', 1, 2, 1, '5aa3f76d85350.jpg', 1, '2018-03-08 13:29:12'),
+(26, 'issacbiz2', 'wcas@casfasc.com', '123456', 2, 14124, 'I am good at taking photo', 1, 4, 1, '5aa3f73f09f46.jpg', 1, '2018-03-10 18:43:34'),
+(28, 'freeuser', 'asdsa@Qasc.com', '123456', 5, 1232134, 'This is free user', 2, 3, 3, NULL, 1, '2018-02-05 18:50:39'),
+(30, 'test12345', 'asdsa@asda.com', '123456', 1, NULL, NULL, NULL, NULL, NULL, NULL, 2, '2018-03-18 13:15:07'),
+(31, 'tryuser', 'wdsa@asdsa.com', '123456', 5, 213123, 'im test', 1, 2, 3, NULL, 1, '2018-03-18 13:15:51');
 
 --
 -- Indexes for dumped tables
