@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 18, 2018 at 06:05 AM
+-- Generation Time: Mar 18, 2018 at 06:31 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 5.6.33
 
@@ -49,8 +49,8 @@ INSERT INTO `event` (`id`, `eventName`, `eventInfo`, `eventLocation`, `eventDate
 (1, 'photo taking', 'I would like to hire you to help me take photo ', 'Central', '2018-03-22', '123456', 26, 28, 1, 1),
 (2, 'test', 'test', 'hk', '2018-03-22', '2134', 13, 28, 1, 2),
 (3, 'test', 'test', 'hk', '2018-03-21', '123123', 14, 11, 1, 1),
-(4, 'test', 'test', 'hk', '2018-03-21', '12345', 18, 25, 1, 1),
-(5, 'test', '123', '123', '2018-03-20', '123', 25, 25, 1, 1);
+(4, 'test', 'test', 'hk', '2018-03-21', '12345', 18, 25, 3, 2),
+(5, 'test', '123', '123', '2018-03-20', '123', 25, 25, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -125,7 +125,9 @@ INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `contact`, `d
 (24, 'test123213', 'asfdsafd@asdas.xcom', '123123', 2, 124214, 'This is for description', 1, 1, 1, '5aa3f78dc0876.jpg', '2018-03-06 14:47:11'),
 (25, 'issacbiz', 'sacdsa@asdfsa.com', '123456', 2, 1431431, 'I am model', 1, 2, 1, '5aa3f76d85350.jpg', '2018-03-08 13:29:12'),
 (26, 'issacbiz2', 'wcas@casfasc.com', '123456', 2, 14124, 'I am good at taking photo', 1, 4, 1, '5aa3f73f09f46.jpg', '2018-03-10 18:43:34'),
-(28, 'freeuser', 'asdsa@Qasc.com', '123456', 5, 1232134, 'This is free user', 2, 3, 3, NULL, '2018-02-05 18:50:39');
+(28, 'freeuser', 'asdsa@Qasc.com', '123456', 5, 1232134, 'This is free user', 2, 3, 3, NULL, '2018-02-05 18:50:39'),
+(30, 'test12345', 'asdsa@asda.com', '123456', 1, NULL, NULL, NULL, NULL, NULL, NULL, '2018-03-18 13:15:07'),
+(31, 'tryuser', 'wdsa@asdsa.com', '123456', 5, 213123, 'im test', 1, 2, 3, NULL, '2018-03-18 13:15:51');
 
 --
 -- Indexes for dumped tables
@@ -169,7 +171,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
