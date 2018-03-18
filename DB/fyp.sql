@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 18, 2018 at 07:41 AM
+-- Generation Time: Mar 18, 2018 at 05:41 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 5.6.33
 
@@ -62,6 +62,7 @@ CREATE TABLE `gallery` (
   `id` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
   `filename` varchar(100) NOT NULL,
+  `systemstatus` int(11) NOT NULL DEFAULT '1',
   `datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -69,16 +70,17 @@ CREATE TABLE `gallery` (
 -- Dumping data for table `gallery`
 --
 
-INSERT INTO `gallery` (`id`, `userid`, `filename`, `datetime`) VALUES
-(3, 25, '5aa3a735b659f.png', '2018-03-10 17:36:53'),
-(4, 25, '5aa3a735c58ae.png', '2018-03-10 17:36:53'),
-(5, 25, '5aa3a735cdacd.png', '2018-03-10 17:36:53'),
-(6, 26, '5aa4fb64108b6.jpg', '2018-03-11 17:48:20'),
-(7, 26, '5aa4fb641f31b.jpg', '2018-03-11 17:48:20'),
-(8, 26, '5aa4fb6426f95.jpg', '2018-03-11 17:48:20'),
-(9, 26, '5aa4fb6451b49.jpg', '2018-03-11 17:48:20'),
-(10, 26, '5aa4fb645f63c.jpg', '2018-03-11 17:48:20'),
-(11, 26, '5aa4fb646fd34.jpg', '2018-03-11 17:48:20');
+INSERT INTO `gallery` (`id`, `userid`, `filename`, `systemstatus`, `datetime`) VALUES
+(3, 25, '5aa3a735b659f.png', 1, '2018-03-10 17:36:53'),
+(4, 25, '5aa3a735c58ae.png', 1, '2018-03-10 17:36:53'),
+(5, 25, '5aa3a735cdacd.png', 1, '2018-03-10 17:36:53'),
+(6, 26, '5aa4fb64108b6.jpg', 1, '2018-03-11 17:48:20'),
+(7, 26, '5aa4fb641f31b.jpg', 1, '2018-03-11 17:48:20'),
+(8, 26, '5aa4fb6426f95.jpg', 1, '2018-03-11 17:48:20'),
+(9, 26, '5aa4fb6451b49.jpg', 1, '2018-03-11 17:48:20'),
+(10, 26, '5aa4fb645f63c.jpg', 1, '2018-03-11 17:48:20'),
+(11, 26, '5aa4fb646fd34.jpg', 1, '2018-03-11 17:48:20'),
+(12, 25, '5aae9554ba2e6.jpg', 1, '2018-03-19 00:35:32');
 
 -- --------------------------------------------------------
 
@@ -95,7 +97,7 @@ CREATE TABLE `user` (
   `contact` int(11) DEFAULT NULL,
   `description` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `budget` int(11) DEFAULT NULL,
-  `specialist` int(11) DEFAULT NULL,
+  `speciality` int(11) DEFAULT NULL,
   `workingexp` int(11) DEFAULT NULL,
   `profilepic` varchar(100) DEFAULT NULL,
   `systemstatus` int(11) NOT NULL DEFAULT '1',
@@ -106,7 +108,7 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `contact`, `description`, `budget`, `specialist`, `workingexp`, `profilepic`, `systemstatus`, `createdatetime`) VALUES
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `contact`, `description`, `budget`, `speciality`, `workingexp`, `profilepic`, `systemstatus`, `createdatetime`) VALUES
 (1, 'admin', 'chun7024@gmail.com', '123456', 3, NULL, '', NULL, NULL, NULL, '5aa39e790102b.png', 1, '2018-03-06 13:26:15'),
 (2, 'CLL9', '', '123456', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
 (8, '123', '123@123.com', '$2y$10$wc3glcS7wRKDnB5HsvGsYegZZRl8WaLxh4pFwWYSTCnVdogS8aQMy', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
@@ -126,7 +128,9 @@ INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `contact`, `d
 (26, 'issacbiz2', 'wcas@casfasc.com', '123456', 2, 14124, 'I am good at taking photo', 1, 4, 1, '5aa3f73f09f46.jpg', 1, '2018-03-10 18:43:34'),
 (28, 'freeuser', 'asdsa@Qasc.com', '123456', 5, 1232134, 'This is free user', 2, 3, 3, NULL, 1, '2018-02-05 18:50:39'),
 (30, 'test12345', 'asdsa@asda.com', '123456', 1, NULL, NULL, NULL, NULL, NULL, NULL, 2, '2018-03-18 13:15:07'),
-(31, 'tryuser', 'wdsa@asdsa.com', '123456', 5, 213123, 'im test', 1, 2, 3, NULL, 1, '2018-03-18 13:15:51');
+(31, 'tryuser', 'wdsa@asdsa.com', '123456', 5, 213123, 'im test', 1, 2, 3, NULL, 1, '2018-03-18 13:15:51'),
+(32, 'testforpremium', 'windasd@asd.com', '213456', 2, 123123, 'test', 4, 2, 3, NULL, 1, '2018-03-18 15:26:59'),
+(36, 'testforfree', 'asd@asdsa.com', '123456', 5, 1213, 'eaf', 3, 2, 3, NULL, 1, '2018-03-18 22:56:48');
 
 --
 -- Indexes for dumped tables
@@ -164,13 +168,13 @@ ALTER TABLE `event`
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

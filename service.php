@@ -18,27 +18,44 @@ include("master.php");
 <h2 style="margin-top:50px">Service</h2>
 
 <div id="myBtnContainer">
+<?php
+    // if quick start an event
+    if(!empty($_SERVER['QUERY_STRING'])) {
+        $getQueries = array();
+        parse_str($_SERVER['QUERY_STRING'], $getQueries);
+?>
+    
+<?php
+    } else {
+?>
   <button class="btn active" onclick="filterSelection('all')"> Show all</button>
   <button class="btn" onclick="filterSelection('Photographer')">Photographer</button>
   <button class="btn" onclick="filterSelection('MakeupArtist')"> MakeupArtist</button>
   <button class="btn" onclick="filterSelection('Fashion Shop')"> Fashion Shop</button>
   <button class="btn" onclick="filterSelection('Model')"> Model</button>
   <button class="btn" onclick="filterSelection('Venue')"> Venue</button>
+<?php
+    }
+?>
 </div>
-
 <!-- Portfolio Gallery Grid -->
 <div class="grid">
     
   <div class="grid-sizer"></div>
     <?php
+        // if quick start an event
+        if(isset($getQueries)) {
+            $query = "SELECT * FROM user t1 WHERE budget =" .$getQueries['budget']. " AND workingexp = ". $getQueries['workingexp'] ." AND speciality = ". $getQueries['speciality'];
+        } else {
+            $query = "SELECT * FROM user t1 WHERE role = 2 or role = 5";
+        }
+    
         if(isset($_SESSION['userid'])) {
             $currentUserId = $_SESSION['userid'];
         } else {
             $currentUserId = '';
         }
-        $query = "  
-          SELECT * FROM user t1
-          WHERE role = 2 or role = 5";
+        
           $result = mysqli_query($DBcon, $query);  
           if(mysqli_num_rows($result) > 0)  
           {  
@@ -48,9 +65,9 @@ include("master.php");
                     $username = $row['username'];
                     $description = $row['description'];
                     $profilepic = $row['profilepic'] == ''? "image/unknown.jpg": "/fyp/upload/profilepic/" . $row['profilepic'];
-                    $specialist = $row['specialist'];
+                    $specialityID = $row['speciality'];
                     $serviceproviderid = $row['id'];
-                    switch($specialist) {
+                    switch($specialityID) {
                         case "1": $speciality = "Photographer"; break;
                         case "2": $speciality = "MakeupArtist"; break;
                         case "3": $speciality = "Fashion Shop"; break;

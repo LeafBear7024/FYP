@@ -87,3 +87,69 @@ ob_end_clean();
 //套用主板頁面
 include("master.php");
 ?>
+<div id="startEvent" class="modal fade" role="dialog" style="margin-top:50px">   
+      <div class="modal-dialog" >  
+     <!-- Modal content-->  
+         <div class="modal-content">  
+          <div class="modal-header">  
+            <h4 class="modal-title">Quick start</h4>  
+             <button type="button" class="close" data-dismiss="modal">&times;</button>               
+          </div>  
+          <div class="modal-body">             
+            <div class="form-group">                  
+              <label for="biz_speciality">Event Type</label>
+              <select name="biz_speciality">
+                <option value="1">Photographer</option>
+                <option value="2">MakeupArtist</option>
+                <option value="3">Fashion Shop</option>
+                <option value="4">Model</option>
+                <option value="5">Venue</option>
+              </select>
+            </div>         
+             <div class="form-group">
+              <label for="biz_budget" class="control-label">Total Budget</label>
+              <select name="biz_budget">
+                <option value="1">$0 - $1000</option>
+                <option value="2">$1001 - $5000</option>
+                <option value="3">$5001 - $10000</option>
+                <option value="4">$10000+</option>
+              </select>
+            </div>    
+            <div class="form-group">          
+              <label for="">Provider Working Experience</label>
+              <select name="biz_workingexp">
+                <option value="1">0 - 2 Years</option>
+                <option value="2">3 - 5 Years</option>
+                <option value="3">6 - 10 Years</option>
+                <option value="4">10 Years+</option>
+              </select>
+            </div>  
+            <hr />
+            <br />
+            <button type="button" name="submit" id="quickStartEvent" class="btn btn-primary">Quick Start</button>  
+          </div>  
+         </div>  
+      </div>  
+   </div> 
+
+<script>
+$(document).ready(function() {
+    $('#start_event').click(function() {
+        // check if user login, prompt login box if user has not yet logged in
+        if('<?=isset($_SESSION['userid'])?>' == 1) {
+            jQuery.noConflict(); 
+            $('#startEvent').modal('show');
+        } else {
+            alert('Please sign in before quickstart an event');
+            $('#login_button').click();
+        }
+    });
+    $('#quickStartEvent').click(function(e) {  
+      var budget = $('select[name=biz_budget]').val();  
+      var speciality = $('select[name=biz_speciality]').val();  
+      var workingexp = $('select[name=biz_workingexp]').val();  
+      e.preventDefault();
+      window.location.replace("service.php?budget=" + budget + "&speciality=" + speciality + "&workingexp=" + workingexp);
+  });
+});
+</script>  
