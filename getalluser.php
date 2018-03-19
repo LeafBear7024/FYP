@@ -32,13 +32,13 @@ $query .= "SELECT id
     ,contact
 	,COALESCE(CASE 
 			WHEN role = 1
-				THEN 'Admin'
+				THEN 'Normal User'
 			END, CASE 
 			WHEN role = 2
 				THEN 'Service Provider(Premium)'
 			END, CASE 
 			WHEN role = 3
-				THEN 'Inactive'
+				THEN 'Admin'
             END, CASE 
 			WHEN role = 5
 				THEN 'Service Provider(Free)'

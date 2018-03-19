@@ -5,8 +5,7 @@
  {  
       $query = "  
       SELECT filename from gallery
-      WHERE userid = '".$_POST["userid"]."' 
-      ";  
+      WHERE userid = '".$_POST["userid"]."' and systemstatus = 1";  
       $result = mysqli_query($connect, $query);  
       if(mysqli_num_rows($result) > 0)  
       { 

@@ -24,10 +24,10 @@ require_once 'db_connect.php';
             $contact = $_POST['contact'];
             $description = $_POST['description'];
             $budget = $_POST['budget'];
-            $specialist = $_POST['specialist'];
+            $speciality = $_POST['speciality'];
             $workingexp = $_POST['workingexp'];
             $role = $_POST['role'];
-            $query = "INSERT INTO user(username,email,password,contact,description, budget,specialist,workingexp,role) VALUES('$username','$email','$password','$contact','$description', '$budget','$specialist','$workingexp','$role')";
+            $query = "INSERT INTO user(username,email,password,contact,description, budget,speciality,workingexp,role) VALUES('$username','$email','$password','$contact','$description', '$budget','$speciality','$workingexp','$role')";
           } else {
               $query = "INSERT INTO user(username,email,password) VALUES('$username','$email','$password')";
           }
