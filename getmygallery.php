@@ -22,15 +22,11 @@ else
 $start_from = ($current_page_number - 1) * $records_per_page;
 
 $query = "  
-      SELECT filename, CASE WHEN systemstatus = 1 THEN 'Active' ELSE 'Inactive' END as systemstatus, datetime from gallery
+      SELECT id,filename,userid, CASE WHEN systemstatus = 1 THEN 'Active' ELSE 'Inactive' END as systemstatus, datetime from gallery
       WHERE userid = ".$_POST["userid"]. " ";
 if(!empty($_POST["searchPhrase"]))
 {
- $query .= 'WHERE (event.id LIKE "%'.$_POST["searchPhrase"].'%" ';
- $query .= 'OR event.event_name LIKE "%'.$_POST["searchPhrase"].'%" ';
- $query .= 'OR event.event_location LIKE "%'.$_POST["searchPhrase"].'%" ';
- $query .= 'OR event.event_date LIKE "%'.$_POST["searchPhrase"].'%" ';
- $query .= 'OR event.event_contact LIKE "%'.$_POST["searchPhrase"].'%" ) ';
+ $query .= 'AND (filename LIKE "%'.$_POST["searchPhrase"].'%" ) ';
 }
 $order_by = '';
 if(isset($_POST["sort"]) && is_array($_POST["sort"]))

@@ -137,7 +137,6 @@ $(document).ready(function() {
     $('#start_event').click(function() {
         // check if user login, prompt login box if user has not yet logged in
         if('<?=isset($_SESSION['userid'])?>' == 1) {
-            jQuery.noConflict(); 
             $('#startEvent').modal('show');
         } else {
             alert('Please sign in before quickstart an event');

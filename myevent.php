@@ -18,7 +18,7 @@ include("master.php");
   
   <div class="table-responsive">
   <div>
-    <div class="col-md-8">
+    <div class="col-md-12">
     
     <table id="event_data" class="table table-condensed table-hover table-striped">
       <thead>
@@ -35,6 +35,7 @@ include("master.php");
       </thead>  
     </table>
     </div>
+<!--
     <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading">Details</div>
@@ -56,6 +57,7 @@ include("master.php");
         </div>
       </div>
     </div>
+-->
 </div>
 <script>  
  $(document).ready(function(){  

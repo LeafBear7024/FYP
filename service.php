@@ -194,7 +194,6 @@ $(document).ready(function() {
         if('<?=isset($_SESSION['userid'])?>' == 1) {
             $('#serviceprovider').val($(this).attr('data-serviceprovider'));
             $('#serviceproviderid').val($(this).attr('data-serviceproviderid'));
-            jQuery.noConflict(); 
             $('#createEvent').modal('show');
         } else {
             alert('Please sign in before apply for an event');

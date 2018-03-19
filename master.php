@@ -11,65 +11,57 @@ require_once 'db_connect.php';
     <title><?=$pagetitle?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-bootgrid/1.3.1/jquery.bootgrid.js"></script>  
-<!--    <link href="card.css" rel="stylesheet" type="text/css">-->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-   <!--  <script  type="text/javascript" src="../js/UserSignUp.js"></script> -->
-<script src="js/masonry.pkgd.min.js"></script>
-<script src="https://imagesloaded.desandro.com/imagesloaded.pkgd.js"></script>
-<script src="js/jquery.uploadify.min.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="css/uploadify.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-bootgrid/1.3.1/jquery.bootgrid.css" />
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-bootgrid/1.3.1/jquery.bootgrid.js"></script>  
-   
-<script src="js/lightgallery.js" type="text/javascript"></script>
-  <script src="js/picturefill.min.js" type="text/javascript"></script>
-     <script src="js/jquery.mousewheel.min.js" type="text/javascript"></script>
-        
-     <script src="js/date.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/css/lightgallery.css">
-     <script src="js/jquery.datetimepicker.full.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="css/jquery.datetimepicker.css">
-        <style>
-            #logo {
-            height: 130%;
-            margin-top: -3px;
-            margin-right: 5px;
-            }       
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>     
+    <script src="js/jquery.bootgrid.js"></script>  
+    <script src="js/popper.min.js"></script>
+    <script src="js/masonry.pkgd.min.js"></script>
+    <script src="js/imagesloaded.pkgd.js"></script>
+    <script src="js/jquery.uploadify.min.js"></script>
+    <script src="js/jquery.datetimepicker.full.min.js"></script>
+    <script src="js/lightgallery.js" type="text/javascript"></script>
+    <script src="js/picturefill.min.js" type="text/javascript"></script>
+    <script src="js/jquery.mousewheel.min.js" type="text/javascript"></script>
+    <script src="js/date.js" type="text/javascript"></script>
+     
+    <link href="css/bootstrap.min.css" rel="stylesheet" >
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" >
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" >
+    <link href="css/uploadify.css" rel="stylesheet"  >
+    <link href="css/jquery.bootgrid.css" rel="stylesheet" >
+    <link  href="https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/css/lightgallery.css" rel="stylesheet" >
+    <link href="css/jquery.datetimepicker.css" rel="stylesheet" >
+    <style>
+#logo {
+height: 130%;
+margin-top: -3px;
+margin-right: 5px;
+}       
 
-            p {                
-            font-size: 14px;           
-            }
+p {                
+font-size: 14px;           
+}
 
-            h3 {
-            margin: 10px 0 30px 0;
-            letter-spacing: 10px;      
-            font-size: 30px;
-            color: #111;
-            }
-            .carousel-inner img {
-            width: 65%; /* Set width to 100% */      
-            margin: auto;
-            }
+h3 {
+margin: 10px 0 30px 0;
+letter-spacing: 10px;      
+font-size: 30px;
+color: #111;
+}
+.carousel-inner img {
+width: 65%; /* Set width to 100% */      
+margin: auto;
+}
 
-            .carousel-caption h3 {
-            color: #fff !important;
-            }
-            @media (max-width: 600px) {
-            .carousel-caption {
-            display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
-            } 
-            }
-
-        </style>
-
-        <style>
+.carousel-caption h3 {
+color: #fff !important;
+}
+@media (max-width: 600px) {
+    .carousel-caption {
+    display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+    } 
+}
 * {
     box-sizing: border-box;
 }
@@ -167,7 +159,7 @@ h1 {
         <li>  <a href="/fyp/service.php">Serivce</a></li>
         <?php if(isset($_SESSION['username'])) {?>
           <li><a href="/fyp/myjob.php">My Job</a></li>
-        <li><a href="/fyp/myevent.php">My Events</a></li>
+        <li><a href="/fyp/myevent.php">My Event</a></li>
           <?php } ?>
         <?php if(isset($_SESSION['username']) && ($_SESSION['role'] == 2 || $_SESSION['role'] == 5) ){?>
         <li><a href="/fyp/mygallery.php">My Gallery</a></li>
