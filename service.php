@@ -310,7 +310,8 @@ $(document).ready(function() {
     });
     
     $('#viewGallery').on('click', function(e) {
-        var spid = $(this).data('spid');
+        var spid = '';
+        spid = $(this).attr('data-spid');
         $.ajax({  
             url:"getGallery.php",  
             method:"POST",  
