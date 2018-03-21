@@ -72,6 +72,8 @@ include("master.php");
                     $profilepic = $row['profilepic'] == ''? "image/unknown.jpg": "/fyp/upload/profilepic/" . $row['profilepic'];
                     $specialityID = $row['speciality'];
                     $workingexpID = $row['workingexp'];
+                    $contact = $row['contact'];
+                    $description = $row['description'];
                     $serviceproviderid = $row['id'];
                     switch($specialityID) {
                         case "1": $speciality = "Photographer"; break;
@@ -92,7 +94,7 @@ include("master.php");
               <img src="<?=$profilepic?>" alt="<?=$speciality?>" style="width:100%">
               <h4><?=$username?></h4>
             </div>
-              <button type="button" class="btn btn-info moreinfo" data-toggle="modal" data-serviceprovider="<?=$username?>" data-serviceproviderid="<?=$serviceproviderid?>" data-workingexp="<?=$workingexp?>" data-speciality="<?=$speciality?>">More Info</button>
+              <button type="button" class="btn btn-info moreinfo" data-toggle="modal" data-serviceprovider="<?=$username?>" data-serviceproviderid="<?=$serviceproviderid?>" data-workingexp="<?=$workingexp?>" data-speciality="<?=$speciality?>" data-contact="<?=$contact?>" data-description="<?=$description?>">More Info</button>
             <button type="button" class="btn btn-info interested" data-toggle="modal" data-serviceprovider="<?=$username?>" data-serviceproviderid="<?=$serviceproviderid?>">I'm Interested!</button>
           </div>
     <?php
@@ -180,6 +182,28 @@ include("master.php");
                                     </td>
                                     <td class="text-primary">
                                         <div id="sp_workingexp"></div> 
+                                    </td>
+                                </tr>  
+                                <tr>        
+                                    <td>
+                                        <strong>
+                                            <span class="glyphicon glyphicon-envelope text-primary"></span> 
+                                            Description                                                
+                                        </strong>
+                                    </td>
+                                    <td class="text-primary">
+                                        <div id="sp_description"></div> 
+                                    </td>
+                                </tr>  
+                                <tr>        
+                                    <td>
+                                        <strong>
+                                            <span class="glyphicon glyphicon-envelope text-primary"></span> 
+                                            Contact                                                
+                                        </strong>
+                                    </td>
+                                    <td class="text-primary">
+                                        <div id="sp_contact"></div> 
                                     </td>
                                 </tr>  
                                 <tr>        
@@ -305,6 +329,8 @@ $(document).ready(function() {
         $('#sp_workingexp').text($(this).data('workingexp'));
         $('#sp_username').text($(this).data('serviceprovider'));
         $('#sp_specialty').text($(this).data('speciality'));
+        $('#sp_description').text($(this).data('description'));
+        $('#sp_contact').text($(this).data('contact'));
         $('#viewGallery').attr('data-spid', $(this).data('serviceproviderid'));
         $('#serviceProviderInfo').modal('show');
     });
