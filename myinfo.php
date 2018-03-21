@@ -67,17 +67,46 @@ ob_start();
                         </td>
                     </tr>   
 
-                    <!-- <tr>        
+                     <tr>        
                         <td>
-                           <button class="btn btn-primary navbar-btn" name="update" id="updateInfo">Update</button> 
+                           <button class="btn btn-primary navbar-btn" name="update" id="update">Update</button> 
                         </td>
-                    </tr>    -->                                  
+                    </tr>                                      
                 </tbody>
             </table>
             </div>
         </div>
     </div>
 </div>
+<div id="updateInfo" class="modal fade" role="dialog" style="margin-top:50px">   
+  <div class="modal-dialog" >  
+ <!-- Modal content-->  
+     <div class="modal-content">  
+      <div class="modal-header">  
+        <h4 class="modal-title">Update user information</h4>  
+         <button type="button" class="close" data-dismiss="modal">&times;</button>               
+      </div>  
+      <div class="modal-body">  
+         <label>Username</label>  
+         <input type="text" name="form_username" id="form_username" class="form-control" / readonly> 
+         <label>Email</label>  
+         <input type="text" name="form_email" id="form_email" class="form-control" required/>  
+         <label>Password</label>  
+         <input type="password" name="form_password" id="form_password" class="form-control" required/>
+         <label>Event Information</label>  
+         <input type="text" name="eventinfo" id="eventInfo" class="form-control" required/>  
+         <label>Event Location</label>  
+         <input type="text" name="eventinfo" id="eventLocation" class="form-control" required/> 
+         <label>Your Contact Info</label>  
+         <input type="text" name="contact" id="eventContact" class="form-control" required/>  
+         <input type="hidden" name="requestedbyid" id="requestedbyid" value="<?=$_SESSION['userid']?>" />
+         <input type="hidden" name="serviceproviderid" id="serviceproviderid"/>
+          <br />
+         <button type="button" name="submit" id="submitEvent" class="btn btn-primary">Submit</button>  
+      </div>  
+     </div>  
+  </div>  
+</div> 
 <?php
 //將緩衝區的內容放到變數裏面，然後清除緩衝區
 $pagemaincontent = ob_get_contents();
@@ -135,6 +164,9 @@ $(document).ready(function(){
       }
      }  
   });  
+  $('#update').click(function() {
+     $('#updateInfo').modal('show'); 
+  });
   $('#profilepic').on('click', function() {
       $('#profile-image-upload').click();
       $('#profile-image-upload').change(function() {
