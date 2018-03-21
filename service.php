@@ -13,7 +13,11 @@ ob_end_clean();
 //套用主板頁面
 include("master.php");
 ?>
-
+<style>
+    .lg-backdrop {
+        z-index: 1050;
+    }
+</style>
 
 <h2 style="margin-top:50px">Service</h2>
 
@@ -60,12 +64,14 @@ include("master.php");
           if(mysqli_num_rows($result) > 0)  
           {  
               $speciality = '';
+              $workingexp = '';
                while ($row = $result->fetch_assoc())
                 {
                     $username = $row['username'];
                     $description = $row['description'];
                     $profilepic = $row['profilepic'] == ''? "image/unknown.jpg": "/fyp/upload/profilepic/" . $row['profilepic'];
                     $specialityID = $row['speciality'];
+                    $workingexpID = $row['workingexp'];
                     $serviceproviderid = $row['id'];
                     switch($specialityID) {
                         case "1": $speciality = "Photographer"; break;
@@ -73,14 +79,20 @@ include("master.php");
                         case "3": $speciality = "Fashion Shop"; break;
                         case "4": $speciality = "Model"; break;
                         case "5": $speciality = "Venue"; break;
+                    }                
+                    switch($workingexpID) {
+                        case "1": $workingexp = "0 - 2 Years"; break;
+                        case "2": $workingexp = "3 - 5 Years"; break;
+                        case "3": $workingexp = "6 - 10 Years"; break;
+                        case "4": $workingexp = "10 Years+"; break;
                     }
     ?>
           <div class="grid-item column <?=$speciality?>">
-            <div class="content" id="<?=$serviceproviderid?>">
+            <div class="content">
               <img src="<?=$profilepic?>" alt="<?=$speciality?>" style="width:100%">
               <h4><?=$username?></h4>
-              <p><?=$description?></p>
             </div>
+              <button type="button" class="btn btn-info moreinfo" data-toggle="modal" data-serviceprovider="<?=$username?>" data-serviceproviderid="<?=$serviceproviderid?>" data-workingexp="<?=$workingexp?>" data-speciality="<?=$speciality?>">More Info</button>
             <button type="button" class="btn btn-info interested" data-toggle="modal" data-serviceprovider="<?=$username?>" data-serviceproviderid="<?=$serviceproviderid?>">I'm Interested!</button>
           </div>
     <?php
@@ -119,6 +131,72 @@ include("master.php");
       </div>  
    </div> 
 
+<div id="serviceProviderInfo" class="modal fade" role="dialog" style="margin-top:50px">   
+      <div class="modal-dialog" >  
+     <!-- Modal content-->  
+         <div class="modal-content">  
+          <div class="modal-header">  
+            <h4 class="modal-title">Service Provider Information</h4>  
+             <button type="button" class="close" data-dismiss="modal">&times;</button>               
+          </div>  
+          <div class="modal-body">  
+            <div class="panel-body inf-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                        <table class="table table-condensed table-responsive table-user-information">
+                            <tbody>
+
+                                <tr>        
+                                    <td>
+                                        <strong>
+                                            <span class="glyphicon glyphicon-user text-primary"></span> 
+                                            Provider Name     
+                                        </strong>
+                                    </td>
+                                    <td class="text-primary">
+                                        <div id="sp_username"></div> 
+                                    </td>
+                                </tr>
+
+
+                                <tr>        
+                                    <td>
+                                        <strong>
+                                            <span class="glyphicon glyphicon-eye-open text-primary"></span> 
+                                            Specialty                                                
+                                        </strong>
+                                    </td>
+                                    <td class="text-primary">
+                                        <div id="sp_specialty"></div>
+                                    </td>
+                                </tr>
+                                <tr>        
+                                    <td>
+                                        <strong>
+                                            <span class="glyphicon glyphicon-envelope text-primary"></span> 
+                                            Working Experience                                                
+                                        </strong>
+                                    </td>
+                                    <td class="text-primary">
+                                        <div id="sp_workingexp"></div> 
+                                    </td>
+                                </tr>  
+                                <tr>        
+                                    <td colspan ="2">
+                                        <button type="button" name="submit" id="viewGallery" class="btn btn-primary">Gallery</button>  
+                                    </td>
+                                </tr>                                  
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>  
+         </div>  
+      </div>  
+   </div> 
 <script>
 
  //Filter 
@@ -223,12 +301,20 @@ $(document).ready(function() {
         });
     });
 
-    $('.content').on('click', function(e) {
-        var userid = this.id;
+    $('.moreinfo').on('click', function(e) {
+        $('#sp_workingexp').text($(this).data('workingexp'));
+        $('#sp_username').text($(this).data('serviceprovider'));
+        $('#sp_specialty').text($(this).data('speciality'));
+        $('#viewGallery').attr('data-spid', $(this).data('serviceproviderid'));
+        $('#serviceProviderInfo').modal('show');
+    });
+    
+    $('#viewGallery').on('click', function(e) {
+        var spid = $(this).data('spid');
         $.ajax({  
             url:"getGallery.php",  
             method:"POST",  
-            data: {userid:userid},  
+            data: {userid:spid},  
             success:function(data) {  
                 //var galleryInfo = [{src: '', thumb: ''}];
                 var galleryInfo = [];
@@ -238,8 +324,8 @@ $(document).ready(function() {
                     var returnData = $.parseJSON(data);
                     $.each(returnData, function(key, item) {
                         galleryInfo.push({
-                            src : "gallery/" + userid + "/" + item.filename,
-                            thumb: "gallery/" + userid + "/" + item.filename,
+                            src : "gallery/" + spid + "/" + item.filename,
+                            thumb: "gallery/" + spid + "/" + item.filename,
                         })
                     });
                     $(this).lightGallery({
@@ -249,8 +335,7 @@ $(document).ready(function() {
                 }
             }  
         });
-    });
-
+    })
 });
     
 </script>

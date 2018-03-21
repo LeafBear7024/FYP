@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 19, 2018 at 03:57 PM
+-- Generation Time: Mar 21, 2018 at 03:05 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 5.6.33
 
@@ -71,7 +71,7 @@ CREATE TABLE `gallery` (
 --
 
 INSERT INTO `gallery` (`id`, `userid`, `filename`, `systemstatus`, `datetime`) VALUES
-(3, 25, '5aa3a735b659f.png', 2, '2018-03-10 17:36:53'),
+(3, 25, '5aa3a735b659f.png', 1, '2018-03-10 17:36:53'),
 (4, 25, '5aa3a735c58ae.png', 1, '2018-03-10 17:36:53'),
 (5, 25, '5aa3a735cdacd.png', 1, '2018-03-10 17:36:53'),
 (6, 26, '5aa4fb64108b6.jpg', 1, '2018-03-11 17:48:20'),
@@ -80,10 +80,10 @@ INSERT INTO `gallery` (`id`, `userid`, `filename`, `systemstatus`, `datetime`) V
 (9, 26, '5aa4fb6451b49.jpg', 1, '2018-03-11 17:48:20'),
 (10, 26, '5aa4fb645f63c.jpg', 1, '2018-03-11 17:48:20'),
 (11, 26, '5aa4fb646fd34.jpg', 1, '2018-03-11 17:48:20'),
-(12, 25, '5aae9554ba2e6.jpg', 2, '2018-03-19 00:35:32'),
-(13, 25, '5aafcb3773767.jpg', 2, '2018-03-19 22:37:43'),
-(14, 25, '5aafcb849ffdc.jpg', 2, '2018-03-19 22:39:00'),
-(15, 25, '5aafce4be19da.jpg', 2, '2018-03-19 22:50:51');
+(12, 25, '5aae9554ba2e6.jpg', 1, '2018-03-19 00:35:32'),
+(13, 25, '5aafcb3773767.jpg', 1, '2018-03-19 22:37:43'),
+(14, 25, '5aafcb849ffdc.jpg', 1, '2018-03-19 22:39:00'),
+(15, 25, '5aafce4be19da.jpg', 1, '2018-03-19 22:50:51');
 
 -- --------------------------------------------------------
 
@@ -119,12 +119,12 @@ INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `contact`, `d
 (10, '123', '123@abcd.com', '123456', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
 (11, 'issac', 'sadsa@faf.com', '123456', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
 (12, '123', 'sadas@asf.com', '1234', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
-(13, 'test', 'test@gmail.com', '123456', 2, NULL, '', NULL, NULL, NULL, '5a9a6673c01f9.jpg', 1, '2018-03-06 13:26:15'),
-(14, 'test123', 'test123@gmail.com', '213', 2, NULL, '', NULL, 3, NULL, '', 1, '2018-03-06 13:26:15'),
+(13, 'test', 'test@gmail.com', '123456', 2, NULL, '', 2, 2, 4, '5a9a6673c01f9.jpg', 1, '2018-03-06 13:26:15'),
+(14, 'test123', 'test123@gmail.com', '213', 2, NULL, '', 3, 3, 3, '', 1, '2018-03-06 13:26:15'),
 (15, 'test1234', 'test1234@gmail.com', '213', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
 (16, '213123', '12312', '123123', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
 (17, '123123123123', '12312312', '123213123123', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
-(18, 'issac123', 'asd@fdasf.com', '21sad', 2, NULL, '', NULL, 2, NULL, '', 1, '2018-03-06 13:32:55'),
+(18, 'issac123', 'asd@fdasf.com', '21sad', 2, NULL, '', 2, 2, 2, '', 1, '2018-03-06 13:32:55'),
 (22, 'asdasd', 'asdsadasd@dasd.com', '12342345', 1, 314314, '', 1, 1, 1, NULL, 1, '2018-03-06 14:03:28'),
 (24, 'test123213', 'asfdsafd@asdas.xcom', '123123', 2, 124214, 'This is for description', 1, 1, 1, '5aa3f78dc0876.jpg', 1, '2018-03-06 14:47:11'),
 (25, 'issacbiz', 'sacdsa@asdfsa.com', '123456', 2, 1431431, 'I am model', 1, 2, 1, '5aa3f76d85350.jpg', 1, '2018-03-08 13:29:12'),
