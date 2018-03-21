@@ -73,7 +73,6 @@ include("master.php");
                     $specialityID = $row['speciality'];
                     $workingexpID = $row['workingexp'];
                     $contact = $row['contact'];
-                    $description = $row['description'];
                     $serviceproviderid = $row['id'];
                     switch($specialityID) {
                         case "1": $speciality = "Photographer"; break;
@@ -191,7 +190,7 @@ include("master.php");
                                             Description                                                
                                         </strong>
                                     </td>
-                                    <td class="text-primary">
+                                    <td class="text-primary" style="width:350px">
                                         <div id="sp_description"></div> 
                                     </td>
                                 </tr>  
