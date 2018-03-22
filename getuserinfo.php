@@ -1,7 +1,7 @@
 <?php  
  session_start();  
  $connect = mysqli_connect("localhost", "root", "", "fyp");  
- if(isset($_POST["username"]))  
+ if(isset($_POST["userid"]))  
  {  
       $query = "  
       SELECT username, email, 
@@ -11,8 +11,13 @@
       ELSE 'Admin' END as roleName,
       role,
       profilepic,
+      contact,
+      description,
+      budget,
+      workingexp,
+      speciality,
       DATE_FORMAT(createdatetime, '%Y-%m-%d') as joindate  FROM user  
-      WHERE username = '".$_POST["username"]."' 
+      WHERE id = '".$_POST["userid"]."' 
       ";  
       $result = mysqli_query($connect, $query);  
       if(mysqli_num_rows($result) > 0)  

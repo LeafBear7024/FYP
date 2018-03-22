@@ -92,17 +92,46 @@ ob_start();
          <label>Email</label>  
          <input type="text" name="form_email" id="form_email" class="form-control" required/>  
          <label>Password</label>  
-         <input type="password" name="form_password" id="form_password" class="form-control" required/>
-         <label>Event Information</label>  
-         <input type="text" name="eventinfo" id="eventInfo" class="form-control" required/>  
-         <label>Event Location</label>  
-         <input type="text" name="eventinfo" id="eventLocation" class="form-control" required/> 
-         <label>Your Contact Info</label>  
-         <input type="text" name="contact" id="eventContact" class="form-control" required/>  
-         <input type="hidden" name="requestedbyid" id="requestedbyid" value="<?=$_SESSION['userid']?>" />
-         <input type="hidden" name="serviceproviderid" id="serviceproviderid"/>
+         <input type="password" name="form_password" id="form_password" class="form-control" placeholder="Leave blank if password remain unchanged" required/>
+          
+          <!--- business user info---->
+         <div id="bizUserInfo" style="display:none">
+             <label>Contact</label>  
+             <input type="text" name="form_contact" id="form_contact" class="form-control" required/>  
+             <label>Description</label>  
+             <input type="text" name="form_description" id="form_description" class="form-control" required/>  
+          </br>
+            <div class="form-group">
+              <label for="form_budget" class="control-label">Budget</label>
+              <select name="form_budget">
+                <option value="1">$0 - $1000</option>
+                <option value="2">$1001 - $5000</option>
+                <option value="3">$5001 - $10000</option>
+                <option value="4">$10000+</option>
+              </select>
+            </div>            
+            <div class="form-group">                  
+              <label for="form_speciality">Speciality</label>
+              <select name="form_speciality">
+                <option value="1">Photographer</option>
+                <option value="2">MakeupArtist</option>
+                <option value="3">Fashion Shop</option>
+                <option value="4">Model</option>
+                <option value="5">Venue</option>
+              </select>
+            </div>            
+            <div class="form-group">          
+              <label for="form_workingexp">Working Experience</label>
+              <select name="form_workingexp">
+                <option value="1">0 - 2 Years</option>
+                <option value="2">3 - 5 Years</option>
+                <option value="3">6 - 10 Years</option>
+                <option value="4">10 Years+</option>
+              </select>
+            </div>
+           </div>
           <br />
-         <button type="button" name="submit" id="submitEvent" class="btn btn-primary">Submit</button>  
+         <button type="button" name="submit" id="updateInfoBtn" class="btn btn-primary">Update</button>  
       </div>  
      </div>  
   </div>  
@@ -132,21 +161,36 @@ function diffToToday(s) {
   return Math.round((toDate(s) - today) / 8.64e7);
 }
 $(document).ready(function(){ 
-  var username = '<?=$_SESSION['username']?>';
+  var userid = <?=$_SESSION['userid']?>  ;
   $.ajax({  
      url:"getuserinfo.php",  
      method:"POST",  
-     data: {username:username},  
+     data: {userid:userid},  
      success:function(data)  
      {  
       var resultData = $.parseJSON(data);
       var joinDate = resultData.joindate;
+         
+      // set normal user info in updateInfo
+      $('#form_username').val(resultData.username);
+      $('#form_email').val(resultData.email);
+         
+      // set business user info in updateInfo
+      if(resultData.role == 2 || resultData.role == 5) {
+          $('#form_contact').val(resultData.contact);
+          $('#form_description').val(resultData.description);
+          $('select[name=form_budget]').val(resultData.budget);
+          $('select[name=form_speciality]').val(resultData.speciality);
+          $('select[name=form_workingexp]').val(resultData.workingexp);
+          $('#bizUserInfo').show();
+      }
          
       // set free trial day to one month later
       var expiryDate = new Date().setDate(new Date().getDate() - 30);
       $('#myinfo_username').text(resultData.username);
       $('#myinfo_email').text(resultData.email);
       $('#myinfo_role').text(resultData.roleName);
+         
       if(resultData.role == 5) {
           if(new Date(expiryDate) <= new Date(joinDate)  ) {
             $('#joindate').text(joinDate);
@@ -164,6 +208,27 @@ $(document).ready(function(){
       }
      }  
   });  
+  $('#updateInfoBtn').click(function() {
+      var userid = <?=$_SESSION['userid']?>  ;
+      var email = $('#form_email').val();   
+      var password = $('#form_password').val();   
+      $.ajax({
+              url: 'updatemyinfo.php', 
+              dataType: 'text', // datatype post back from PHP
+              data: {userid: userid, email: email, password: password},                         
+              method: 'POST',
+              success: function(response){
+                  if(response == 1) {
+                    alert("Your Info has been updated successfully!");
+                      location.reload();
+                  } else if(response == 2) {
+                      alert("Email has already been used, please try another one");
+                  } else {
+                    alert("Sorry, there is an error, please try again later");
+                  }
+              }
+           });
+  });
   $('#update').click(function() {
      $('#updateInfo').modal('show'); 
   });
