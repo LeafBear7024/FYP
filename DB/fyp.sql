@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 21, 2018 at 03:05 PM
+-- Generation Time: Mar 24, 2018 at 12:19 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 5.6.33
 
@@ -116,7 +116,7 @@ INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `contact`, `d
 (2, 'CLL9', '', '123456', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
 (8, '123', '123@123.com', '$2y$10$wc3glcS7wRKDnB5HsvGsYegZZRl8WaLxh4pFwWYSTCnVdogS8aQMy', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
 (9, '123', '123@D.COM', '123123', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
-(10, '123', '123@abcd.com', '123456', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
+(10, '123', 'chun7025@gmail.com', '123', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
 (11, 'issac', 'sadsa@faf.com', '123456', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
 (12, '123', 'sadas@asf.com', '1234', 1, NULL, '', NULL, NULL, NULL, '', 1, '2018-03-06 13:26:15'),
 (13, 'test', 'test@gmail.com', '123456', 2, NULL, '', 2, 2, 4, '5a9a6673c01f9.jpg', 1, '2018-03-06 13:26:15'),
@@ -127,7 +127,7 @@ INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `contact`, `d
 (18, 'issac123', 'asd@fdasf.com', '21sad', 2, NULL, '', 2, 2, 2, '', 1, '2018-03-06 13:32:55'),
 (22, 'asdasd', 'asdsadasd@dasd.com', '12342345', 1, 314314, '', 1, 1, 1, NULL, 1, '2018-03-06 14:03:28'),
 (24, 'test123213', 'asfdsafd@asdas.xcom', '123123', 2, 124214, 'This is for description', 1, 1, 1, '5aa3f78dc0876.jpg', 1, '2018-03-06 14:47:11'),
-(25, 'issacbiz', 'sacdsa@asdfsa.com', '123456', 2, 1431431, 'I am model', 1, 2, 1, '5aa3f76d85350.jpg', 1, '2018-03-08 13:29:12'),
+(25, 'issacbiz', 'isascbiz@gmail.com', '123456', 2, 60410199, 'I am model, welcome to find me', 2, 4, 4, '5aa3f76d85350.jpg', 1, '2018-03-08 13:29:12'),
 (26, 'issacbiz2', 'wcas@casfasc.com', '123456', 2, 14124, 'I am good at taking photo', 1, 4, 1, '5aa3f73f09f46.jpg', 1, '2018-03-10 18:43:34'),
 (28, 'freeuser', 'asdsa@Qasc.com', '123456', 5, 1232134, 'This is free user', 2, 3, 3, NULL, 1, '2018-02-05 18:50:39'),
 (30, 'test12345', 'asdsa@asda.com', '123456', 1, NULL, NULL, NULL, NULL, NULL, NULL, 2, '2018-03-18 13:15:07'),
