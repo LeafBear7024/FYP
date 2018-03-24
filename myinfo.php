@@ -54,7 +54,79 @@ ob_start();
                         <td class="text-primary">
                             <div id="myinfo_email"></div> 
                         </td>
-                    </tr>  
+                    </tr> 
+                    
+                    <tr class="bizUserInfo" style="display:none">        
+                        <td>
+                            <strong>
+                                <span class="glyphicon glyphicon-envelope text-primary"></span> 
+                                Contact                                                
+                            </strong>
+                        </td>
+                        <td class="text-primary">
+                            <div id="myinfo_contact"></div> 
+                        </td>
+                    </tr> 
+                    <tr class="bizUserInfo" style="display:none">        
+                        <td>
+                            <strong>
+                                <span class="glyphicon glyphicon-envelope text-primary"></span> 
+                                Description                                                
+                            </strong>
+                        </td>
+                        <td class="text-primary">
+                            <div id="myinfo_description"></div> 
+                        </td>
+                    </tr>   
+                    <tr class="bizUserInfo" style="display:none">        
+                        <td>
+                            <strong>
+                                <span class="glyphicon glyphicon-envelope text-primary"></span> 
+                                Budget                                                
+                            </strong>
+                        </td>
+                        <td class="text-primary">
+                              <select name="myinfo_budget" disabled=true>
+                                <option value="1">$0 - $1000</option>
+                                <option value="2">$1001 - $5000</option>
+                                <option value="3">$5001 - $10000</option>
+                                <option value="4">$10000+</option>
+                              </select>
+                        </td>
+                    </tr>   
+                    <tr class="bizUserInfo" style="display:none">        
+                        <td>
+                            <strong>
+                                <span class="glyphicon glyphicon-envelope text-primary"></span> 
+                                Speciality                                                
+                            </strong>
+                        </td>
+                        <td class="text-primary">
+                              <select name="myinfo_speciality" disabled=true>
+                                <option value="1">Photographer</option>
+                                <option value="2">MakeupArtist</option>
+                                <option value="3">Fashion Shop</option>
+                                <option value="4">Model</option>
+                                <option value="5">Venue</option>
+                              </select>
+                        </td>
+                    </tr>   
+                    <tr class="bizUserInfo" style="display:none">        
+                        <td>
+                            <strong>
+                                <span class="glyphicon glyphicon-envelope text-primary"></span> 
+                                Working Experience                                                
+                            </strong>
+                        </td>
+                        <td class="text-primary">
+                              <select name="myinfo_workingexp" disabled=true>
+                                <option value="1">0 - 2 Years</option>
+                                <option value="2">3 - 5 Years</option>
+                                <option value="3">6 - 10 Years</option>
+                                <option value="4">10 Years+</option>
+                              </select>
+                        </td>
+                    </tr>   
                     <tr>        
                         <td>
                             <strong>
@@ -92,10 +164,10 @@ ob_start();
          <label>Email</label>  
          <input type="text" name="form_email" id="form_email" class="form-control" required/>  
          <label>Password</label>  
-         <input type="password" name="form_password" id="form_password" class="form-control" placeholder="Leave blank if password remain unchanged" required/>
+         <input type="password" name="form_password" id="form_password" class="form-control" placeholder="Leave blank if your password remain unchanged" required/>
           
           <!--- business user info---->
-         <div id="bizUserInfo" style="display:none">
+         <div class="bizUserInfo" style="display:none">
              <label>Contact</label>  
              <input type="text" name="form_contact" id="form_contact" class="form-control" required/>  
              <label>Description</label>  
@@ -174,15 +246,24 @@ $(document).ready(function(){
       // set normal user info in updateInfo
       $('#form_username').val(resultData.username);
       $('#form_email').val(resultData.email);
+      $('#updateInfoBtn').attr('data-userrole',resultData.role);
          
       // set business user info in updateInfo
       if(resultData.role == 2 || resultData.role == 5) {
+          // preset info
+          $('#myinfo_contact').text(resultData.contact);
+          $('#myinfo_description').text(resultData.description);
+          $('select[name=myinfo_budget]').val(resultData.budget);
+          $('select[name=myinfo_speciality]').val(resultData.speciality);
+          $('select[name=myinfo_workingexp]').val(resultData.workingexp);
+          
+          // preset updateinfo
           $('#form_contact').val(resultData.contact);
           $('#form_description').val(resultData.description);
           $('select[name=form_budget]').val(resultData.budget);
           $('select[name=form_speciality]').val(resultData.speciality);
           $('select[name=form_workingexp]').val(resultData.workingexp);
-          $('#bizUserInfo').show();
+          $('.bizUserInfo').show();
       }
          
       // set free trial day to one month later
@@ -212,10 +293,21 @@ $(document).ready(function(){
       var userid = <?=$_SESSION['userid']?>  ;
       var email = $('#form_email').val();   
       var password = $('#form_password').val();   
+      var userrole = $(this).data('userrole');
+      if(userrole == 2 || userrole == 5) {
+        var contact = $('#form_contact').val();  
+        var description = $('#form_description').val();
+        var budget = $('select[name=form_budget]').val();
+        var speciality = $('select[name=form_speciality]').val();
+        var workingexp = $('select[name=form_workingexp]').val();
+        var data = {userrole : userrole, userid: userid, email: email, password: password, contact: contact, description: description, budget: budget, speciality: speciality, workingexp: workingexp };
+      } else {
+        var data = {userrole : userrole, userid: userid, email: email, password: password};
+      }
       $.ajax({
               url: 'updatemyinfo.php', 
               dataType: 'text', // datatype post back from PHP
-              data: {userid: userid, email: email, password: password},                         
+              data: data,                         
               method: 'POST',
               success: function(response){
                   if(response == 1) {

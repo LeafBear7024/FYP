@@ -4,6 +4,7 @@ require_once 'db_connect.php';
 $changePWD = 0;
 $email = $_POST['email'];
 $password = $_POST['password'];
+$userrole = $_POST['userrole'];
 if(!empty($password)) {
     $changePWD = 1;
 }
@@ -16,6 +17,14 @@ if(isset($_POST['userid'])) {
         
         if($changePWD == 1) {
             $query .= ",password = '$password'";  
+        }
+        if($userrole == 2 || $userrole == 5) {
+            $contact = $_POST['contact'];
+            $description = $_POST['description'];
+            $budget = $_POST['budget'];
+            $speciality = $_POST['speciality'];
+            $workingexp = $_POST['workingexp'];
+            $query .= ",contact = '$contact',description = '$description',budget = '$budget',speciality = '$speciality',workingexp = '$workingexp'";  
         }
         $query .= "WHERE id = " . $_POST['userid'];  
     } else {

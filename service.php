@@ -28,7 +28,49 @@ include("master.php");
         $getQueries = array();
         parse_str($_SERVER['QUERY_STRING'], $getQueries);
 ?>
-    
+    <script>
+        $(document).ready(function() {
+            $('select[name=biz_budget]').val(<?=$getQueries['budget']?>);
+            $('select[name=biz_speciality]').val(<?=$getQueries['speciality']?>);
+            $('select[name=biz_workingexp]').val(<?=$getQueries['workingexp']?>);
+            
+            $('#updateCriteria').click(function() {
+                var budget = $('select[name=biz_budget]').val();
+                var speciality = $('select[name=biz_speciality]').val();
+                var workingexp = $('select[name=biz_workingexp]').val();
+                window.location.href = window.location.href.split("?")[0] + "?speciality=" + speciality + "&budget=" + budget+ "&workingexp=" + workingexp ;
+            });
+        })
+    </script>
+            <div class="form-group">                  
+              <label for="biz_speciality">Event Type</label>
+              <select name="biz_speciality">
+                <option value="1">Photographer</option>
+                <option value="2">MakeupArtist</option>
+                <option value="3">Fashion Shop</option>
+                <option value="4">Model</option>
+                <option value="5">Venue</option>
+              </select>
+            </div>         
+             <div class="form-group">
+              <label for="biz_budget" class="control-label">Total Budget</label>
+              <select name="biz_budget">
+                <option value="1">$0 - $1000</option>
+                <option value="2">$1001 - $5000</option>
+                <option value="3">$5001 - $10000</option>
+                <option value="4">$10000+</option>
+              </select>
+            </div>    
+            <div class="form-group">          
+              <label for="">Provider Working Experience</label>
+              <select name="biz_workingexp">
+                <option value="1">0 - 2 Years</option>
+                <option value="2">3 - 5 Years</option>
+                <option value="3">6 - 10 Years</option>
+                <option value="4">10 Years+</option>
+              </select>
+                <button class="btn btn-primary" id="updateCriteria">Update</button>
+            </div>  
 <?php
     } else {
 ?>
@@ -187,24 +229,24 @@ include("master.php");
                                     <td>
                                         <strong>
                                             <span class="glyphicon glyphicon-envelope text-primary"></span> 
-                                            Description                                                
-                                        </strong>
-                                    </td>
-                                    <td class="text-primary" style="width:350px">
-                                        <div id="sp_description"></div> 
-                                    </td>
-                                </tr>  
-                                <tr>        
-                                    <td>
-                                        <strong>
-                                            <span class="glyphicon glyphicon-envelope text-primary"></span> 
                                             Contact                                                
                                         </strong>
                                     </td>
                                     <td class="text-primary">
                                         <div id="sp_contact"></div> 
                                     </td>
-                                </tr>  
+                                </tr> 
+                                <tr>        
+                                    <td>
+                                        <strong>
+                                            <span class="glyphicon glyphicon-envelope text-primary"></span> 
+                                            Description                                                
+                                        </strong>
+                                    </td>
+                                    <td class="text-primary" style="width:350px">
+                                        <div id="sp_description"></div> 
+                                    </td>
+                                </tr>   
                                 <tr>        
                                     <td colspan ="2">
                                         <button type="button" name="submit" id="viewGallery" class="btn btn-primary">Gallery</button>  
