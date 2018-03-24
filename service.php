@@ -149,7 +149,7 @@ include("master.php");
      <!-- Modal content-->  
          <div class="modal-content">  
           <div class="modal-header">  
-            <h4 class="modal-title">I'm interested on create the following event</h4>  
+            <h4 class="modal-title">I would like to create following event</h4>  
              <button type="button" class="close" data-dismiss="modal">&times;</button>               
           </div>  
           <div class="modal-body">  

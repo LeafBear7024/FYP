@@ -224,23 +224,6 @@ h1 {
 <div id="Gallery" class="modal fade" role="dialog"> 
 </div>
     
-<div id="charge" class="modal fade" role="dialog" style="margin-top:50px">   
-      <div class="modal-dialog" >  
-     <!-- Modal content-->  
-         <div class="modal-content">  
-          <div class="modal-header">  
-            <h4 class="modal-title">Upgrade to Premium</h4>  
-             <button type="button" class="close" data-dismiss="modal">&times;</button>               
-          </div>  
-          <div class="modal-body">  
-             <label>Code</label>  
-             <input type="text" name="code" id="code" class="form-control" />  
-             <br />  
-             <button type="button" name="submit" id="submit" class="btn btn-primary">Submit</button>  
-          </div>  
-         </div>  
-      </div>  
-   </div> 
     
 
 

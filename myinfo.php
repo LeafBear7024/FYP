@@ -4,6 +4,7 @@ $pagetitle = "My Info";
 ob_start();
 ?>
 
+<link href="css/creditcard.css" rel="stylesheet" >
 <div id="band" class="container text-left" style="margin-top:50px" >
 <h1>My Info</h1>
 <div class="panel-body inf-content">
@@ -208,6 +209,53 @@ ob_start();
      </div>  
   </div>  
 </div> 
+
+
+<div id="charge" class="modal fade" role="dialog" style="margin-top:50px">   
+  <div class="modal-dialog" >  
+ <!-- Modal content-->  
+     <div class="modal-content">  
+      <div class="modal-header">  
+        <h4 class="modal-title">Upgrade to Premium</h4>  
+         <button type="button" class="close" data-dismiss="modal">&times;</button>               
+      </div>  
+    <div class="modal-body" id="paymentInfo">
+      <label for=""><span style="color:red">Fee : $120</span></label>
+        <form class="payment-card">
+          <div class="payment-card__front">
+            <div class="payment-card__group">
+              <label class="payment-card__field">
+                <span class="payment-card__hint">Holder of card</span>
+                <input class="payment-card__input" placeholder="Holder of card" pattern="[A-Za-z, ]{2,}" name="holder-card" required>
+              </label>
+            </div>
+            <div class="payment-card__group">
+              <label class="payment-card__field">
+                <span class="payment-card__hint">Number of card</span>
+                <input type="text" class="payment-card__input" placeholder="Number of card" pattern="[0-9]{16}" name="number-card" required>
+              </label>
+            </div>
+            <div class="payment-card__group">
+              <span class="payment-card__caption">valid thru</span>
+            </div>
+            <div class="payment-card__group payment-card__footer">
+              <label class="payment-card__field payment-card__month">
+                <span class="payment-card__hint">Month</span>
+                <input type="text" class="payment-card__input" placeholder="MM" maxlength="2" pattern="[0-9]{2}" name="mm-card" required>
+              </label>
+              <span class="payment-card__separator">/</span>
+              <label class="payment-card__field payment-card__year">
+                <span class="payment-card__hint">Year</span>
+                <input type="text" class="payment-card__input" placeholder="YY" maxlength="2" pattern="[0-9]{2}" name="year-card" required>
+              </label>
+            </div>
+          </div>
+         <br />  
+         <button type="button" name="submit" id="upgradeToPremium" class="btn btn-primary">Upgrade</button> 
+      </div>  
+     </div>  
+  </div>  
+</div> 
 <?php
 //將緩衝區的內容放到變數裏面，然後清除緩衝區
 $pagemaincontent = ob_get_contents();
@@ -276,7 +324,7 @@ $(document).ready(function(){
           if(new Date(expiryDate) <= new Date(joinDate)  ) {
             $('#joindate').text(joinDate);
           } else {
-            var expiryInfo = " (Free trial Expired, please consider <button class='btn btn-default' data-toggle='modal' data-target='#charge'>Upgrade</button>)"
+            var expiryInfo = " (Free trial Expired, please <button class='btn btn-default' data-toggle='modal' data-target='#charge'>Upgrade</button>)"
             $('#joindate').html(joinDate + expiryInfo);
           }
       } else {
@@ -288,7 +336,24 @@ $(document).ready(function(){
         $('#profilepic').attr("src", "upload/profilepic/" + resultData.profilepic);
       }
      }  
-  });  
+  }); 
+    $('#upgradeToPremium').click(function() {
+      var userid = <?=$_SESSION['userid']?> ;
+      $.ajax({
+              url: 'upgradetopremium.php', 
+              dataType: 'text', // datatype post back from PHP
+              data: {userid: userid},                         
+              method: 'POST',
+              success: function(response){
+                  if(response == 1) {
+                    alert("You have been upgraded to premium, enjoy!");
+                      location.reload();
+                  } else {
+                    alert("Sorry, there is an error, please try again later");
+                  }
+              }
+           });
+  }); 
   $('#updateInfoBtn').click(function() {
       var userid = <?=$_SESSION['userid']?>  ;
       var email = $('#form_email').val();   

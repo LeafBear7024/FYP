@@ -2,17 +2,7 @@
 $pagetitle = "My Job";
 ob_start();
 ?>
-<?php
-//將緩衝區的內容放到變數裏面，然後清除緩衝區
-$pagemaincontent = ob_get_contents();
-ob_end_clean();
-//套用主板頁面
-include("master.php");
-?>
 
-
-
-<!-- Page Put in Content-->
 <div id="band" class="container text-left" style="margin-top:50px" >
   <h1>My Job</h1>
   
@@ -35,30 +25,15 @@ include("master.php");
       </thead>  
     </table>
     </div>
-<!--
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">Details</div>
-        <div class="panel-body">
-        
-          <dl >
-            <dt >ID</dt >
-            <dd ></dd >
-            <dt >Event Name</dt >
-            <dd ></dd >
-            <dt >Event location</dt >
-            <dd ></dd >
-            <dt >Event Date</dt >
-            <dd ></dd >
-            <dt >Event contact</dt >
-            <dd ></dd >
-          </dl >
-
-        </div>
-      </div>
-    </div>
--->
 </div>
+<?php
+//將緩衝區的內容放到變數裏面，然後清除緩衝區
+$pagemaincontent = ob_get_contents();
+ob_end_clean();
+//套用主板頁面
+include("master.php");
+?>
+
 <script>  
  $(document).ready(function(){  
   var grid = $('#event_data').bootgrid({
