@@ -44,8 +44,8 @@ ob_start();
       <div class="item">
         <img src="/fyp/image/modelmainpic.jpg" alt="Chicago"  height="700">
         <div class="carousel-caption">
-          <h3>Hong Kong</h3>
-          <p> The Pearl of East- A night we won't forget</p>
+          <h3>Beautiful</h3>
+          <p> Everyone can be a model</p>
         </div>      
       </div>
 
@@ -75,7 +75,8 @@ ob_start();
   <button type="button" id="start_event" name="start_event" class="btn btn-danger center-block">Start Event</button>
   <p> </p>
 
-  <p>We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  <p>The Photo Partner provided a platform for user and service provider to create their event or start business easily.  The person who is beginner in photography can use our platform easy to find their first customer. Let start your event or become our business user to start your new business.
+</p>
   <br>
   
 </div>

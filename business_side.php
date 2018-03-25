@@ -17,7 +17,9 @@ ob_start();
     <div class="col-sm-8">
       <h2>Easy way to build up your business</h2><br> 
       <h4>This is a new platform for people to create their event which is about photograghy.</h4><br>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>In this few years, smart phone and digital camera have matured development, photography become more popular that make people have more chance to contact photography, which is a big market, because any industry need production photo, such as food, toy, computer, wedding and fashion shop, etc. Photography become popularity that means who has camera can become a photographer, so how people can highlight their own value or become professional?  In my platform, there should have a gallery or some product photo to provide reference for other people understand their strong and weakness.
+
+</p>
       <br><button class="btn-danger btn-lg scrollTobuttom" name="go_bottom" id="go_buttom" onclick="location.href='#SignUpForBizSection'" >Start Your Business</button>
     </div>
 
@@ -37,10 +39,11 @@ ob_start();
     </div>
     <div class="col-sm-8">
       <h2>Our Values</h2><br>
-      <h4><strong>MISSION:</strong> Our mission lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
-      <p><strong>VISION:</strong> Our vision Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
+      <h4><strong>MISSION:</strong> Our system can assist business user who is just start up their business and not famous. Also, provide new business method (E-commerce) for the business user who is using outdated business model. That can increase their business opportunities and provide easy way to build up their branding.
+.</h4><br>
+      <h4><strong>VISION:</strong> We will become main business and communication platform in photography industry
+Through this system providing platform for our business user and general user to have a convenience way to get or order the job and build up their relationship, and this platform can become their main communication platform in photography industry. When they using our website, user can easier to find out and contact their camera partner</p>
+    <h4></div>
   </div>
 </div>
 
@@ -149,13 +152,13 @@ ob_start();
 </div>
     <a name="SignUpForBizSection"></a>
 <!-- Container (Pricing Section) -->
-<div id="pricing" class="container-fluid">
+<div id="pricing" class="container-fluid" >
   <div class="text-center">
     <h2>Pricing</h2>
     <h4>Choose a payment plan that works for you</h4>
   </div>
   <div class="row slideanim">
-    <div class="col-sm-4 col-xs-12">
+    <div class="col-sm-6 col-xs-12">
       <div class="panel panel-default text-center">
         <div class="panel-heading">
           <h1>Free Trial</h1>
@@ -177,7 +180,7 @@ ob_start();
         </div>
       </div>      
     </div>        
-    <div class="col-sm-4 col-xs-12">
+    <div class="col-sm-6 col-xs-12">
       <div class="panel panel-default text-center">
         <div class="panel-heading">
           <h1>Premium</h1>
@@ -198,7 +201,7 @@ ob_start();
           <!-- <button class="btn btn-lg biz-signup">sign up</button> -->
         </div>
       </div>      
-    </div>    
+    </div>  
   </div>
 </div>
 
