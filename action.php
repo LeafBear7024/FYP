@@ -17,11 +17,11 @@
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['userid'] = $row['id'];
             }
-           echo 'Yes';  
+           echo 1;  
       }  
       else  
       {  
-           echo 'No';  
+           echo 0;  
       }  
  }  
  if(isset($_POST["action"]))  

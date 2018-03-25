@@ -347,15 +347,14 @@ $(document).ready(function(){
                      method:"POST",  
                      data: {username:username, password:password, role : 1},  
                      success:function(data)  
-                     {  
-                          //alert(data);  
-                          if(data == 'No')  
+                     {   
+                          if(data == 0)  
                           {  
-                               alert("Wrong Data");  
+                               alert("Wrong username / password, please try again!");  
                           }  
                           else  
                           {  
-                               alert("Sign in successfully"); 
+                               alert("Sign in successfully!"); 
                                $('#loginModal').hide();  
                                location.href= 'index.php';  
                           }  
