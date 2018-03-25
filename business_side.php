@@ -152,13 +152,13 @@ Through this system providing platform for our business user and general user to
 </div>
     <a name="SignUpForBizSection"></a>
 <!-- Container (Pricing Section) -->
-<div id="pricing" class="container-fluid">
+<div id="pricing" class="container-fluid" >
   <div class="text-center">
     <h2>Pricing</h2>
     <h4>Choose a payment plan that works for you</h4>
   </div>
   <div class="row slideanim">
-    <div class="col-sm-4 col-xs-12">
+    <div class="col-sm-6 col-xs-12">
       <div class="panel panel-default text-center">
         <div class="panel-heading">
           <h1>Free Trial</h1>
@@ -180,7 +180,7 @@ Through this system providing platform for our business user and general user to
         </div>
       </div>      
     </div>        
-    <div class="col-sm-4 col-xs-12">
+    <div class="col-sm-6 col-xs-12">
       <div class="panel panel-default text-center">
         <div class="panel-heading">
           <h1>Premium</h1>
@@ -201,7 +201,7 @@ Through this system providing platform for our business user and general user to
           <!-- <button class="btn btn-lg biz-signup">sign up</button> -->
         </div>
       </div>      
-    </div>    
+    </div>  
   </div>
 </div>
 
