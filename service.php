@@ -156,14 +156,25 @@ include("master.php");
              <label>Service Provider</label>  
              <input type="text" name="serviceprovider" id="serviceprovider" class="form-control" / readonly> 
              <label>Event Name</label>  
-             <input type="text" name="contact" id="eventName" class="form-control" required/>  
+             <input type="text" name="contact" id="eventName" class="form-control" required/> 
              <label>Event Date</label>  
-             <input id="eventDate" type="text" class="form-control" required/> 
-             <label>Event Information</label>  
+             <input id="eventDate" type="text" class="form-control" required/>  
+             <label>Event Type</label>               
+              <br />
+              <select name="eventType">
+                <option value="1">Family Photography</option>
+                <option value="2">Event Photography</option>
+                <option value="3">Videography</option>
+                <option value="4">Product Photography</option>
+                <option value="5">Wedding Photography</option>
+                <option value="6">Other</option>
+              </select>
+             <br /><br />
+             <label>Event Details</label>  
              <input type="text" name="eventinfo" id="eventInfo" class="form-control" required/>  
              <label>Event Location</label>  
-             <input type="text" name="eventinfo" id="eventLocation" class="form-control" required/> 
-             <label>Your Contact Info</label>  
+             <input type="text" name="eventlocation" id="eventLocation" class="form-control" required/> 
+             <label>Contact Info</label>  
              <input type="text" name="contact" id="eventContact" class="form-control" required/>  
              <input type="hidden" name="requestedbyid" id="requestedbyid" value="<?=$_SESSION['userid']?>" />
              <input type="hidden" name="serviceproviderid" id="serviceproviderid"/>
@@ -173,7 +184,6 @@ include("master.php");
          </div>  
       </div>  
    </div> 
-
 <div id="serviceProviderInfo" class="modal fade" role="dialog" style="margin-top:50px">   
       <div class="modal-dialog" >  
      <!-- Modal content-->  
@@ -349,13 +359,14 @@ $(document).ready(function() {
         var eventInfo = $('#eventInfo').val();
         var eventLocation = $('#eventLocation').val();
         var eventDate = $('#eventDate').val();
+        var eventType = $('select[name=eventType]').val();
         var eventContact = $('#eventContact').val();
         var serviceproviderid = $('#serviceproviderid').val();
         var requestedbyid = $('#requestedbyid').val();
         $.ajax({  
             url:"createevent.php",  
             method:"POST",  
-            data: {eventName:eventName,eventInfo:eventInfo,eventLocation:eventLocation,eventDate:eventDate,eventContact:eventContact,serviceproviderid:serviceproviderid,requestedbyid:requestedbyid},  
+            data: {eventName:eventName,eventInfo:eventInfo,eventType:eventType,eventLocation:eventLocation,eventDate:eventDate,eventContact:eventContact,serviceproviderid:serviceproviderid,requestedbyid:requestedbyid},  
             success:function(data) {  
                 if(data == 1) {
                     alert("Event created successfully!");

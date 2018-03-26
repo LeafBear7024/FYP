@@ -29,7 +29,26 @@ $query .= "SELECT id
 	,eventName
 	,eventInfo
 	,eventLocation
-	,eventDate
+	,eventDate    
+    ,COALESCE(CASE 
+        WHEN eventtype = 1
+            THEN 'Famiy Photography'
+        END, CASE 
+        WHEN eventtype = 2
+            THEN 'Event Photography'
+        END, CASE 
+        WHEN eventtype = 3
+            THEN 'Videography'
+        END, CASE 
+        WHEN eventtype = 4
+            THEN 'Product Photography'
+        END, CASE 
+        WHEN eventtype = 5
+            THEN 'Wedding Photography'
+        END, CASE 
+        WHEN eventtype = 6
+            THEN 'Other'
+        END) AS eventType
 	,eventContact
 	,serviceproviderid
 	,requestedbyid

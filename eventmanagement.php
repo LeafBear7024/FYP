@@ -24,9 +24,10 @@ include("master.php");
       <thead>
         <tr ng-click="selectPerson()">
           <th data-column-id="eventName">Event Name</th>
-          <th data-column-id="eventInfo">Event Info</th>
-          <th data-column-id="eventLocation">Event location</th> 
           <th data-column-id="eventDate">Event Date</th>
+          <th data-column-id="eventType">Event Type</th>
+          <th data-column-id="eventInfo">Event Detail</th>
+          <th data-column-id="eventLocation">Event location</th> 
           <th data-column-id="eventContact">Event contact</th>
           <th data-column-id="response">Response</th>
           <th data-column-id="systemstatus">SystemStatus</th>

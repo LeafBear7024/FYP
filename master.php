@@ -23,6 +23,7 @@ require_once 'db_connect.php';
     <script src="js/picturefill.min.js" type="text/javascript"></script>
     <script src="js/jquery.mousewheel.min.js" type="text/javascript"></script>
     <script src="js/date.js" type="text/javascript"></script>
+    <script src="js/jquery-bootstrap-modal-steps.min.js" type="text/javascript"></script>
      
     <link href="css/bootstrap.min.css" rel="stylesheet" >
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
@@ -332,7 +333,7 @@ $(document).ready(function(){
       }  
       else  
       {  
-          alert("Both Fields are required");  
+          alert("Missing username / password");  
       }  
   });
 
@@ -363,7 +364,7 @@ $(document).ready(function(){
            }  
            else  
            {  
-                alert("Both Fields are required");  
+                alert("Missing username / password");  
            }  
       });  
      
