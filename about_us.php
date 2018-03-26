@@ -13,6 +13,7 @@ ob_start();
       <br><button class="btn btn-lg btn-danger" name="business_side" id="business_side1">Become our partner</button>
     </div>
     <div class="col-sm-4">
+      <img src="/fyp/image/social-media-app.jpg" style="width: 100%;">
     </div>
   </div>
 </div>
