@@ -19,12 +19,12 @@ ob_start();
       <h4>This is a new platform for people to create their event which is about photograghy.</h4><br>
       <p>In this few years, smart phone and digital camera have matured development, photography become more popular that make people have more chance to contact photography, which is a big market, because any industry need production photo, such as food, toy, computer, wedding and fashion shop, etc. Photography become popularity that means who has camera can become a photographer, so how people can highlight their own value or become professional?  In my platform, there should have a gallery or some product photo to provide reference for other people understand their strong and weakness.
 
-</p>
+      </p>
       <br><button class="btn-danger btn-lg scrollTobuttom" name="go_bottom" id="go_buttom" onclick="location.href='#SignUpForBizSection'" >Start Your Business</button>
     </div>
 
     <div class="col-sm-4">
-      
+       <img src="/fyp/image/photo_B.jpg" style="width: 122%;">
     </div>
   </div>
 </div>
@@ -33,11 +33,11 @@ ob_start();
 </p>
 
 <div class="container-fluid bg-grey">
-  <div class="row">
-    <div class="col-sm-4">
-      
+  <div class="row" style="background-color:white;">
+    <div class="col-sm-5">
+       <img src="/fyp/image/our_value.jpg" width="100%" height="100%">
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-7">
       <h2>Our Values</h2><br>
       <h4><strong>MISSION:</strong> Our system can assist business user who is just start up their business and not famous. Also, provide new business method (E-commerce) for the business user who is using outdated business model. That can increase their business opportunities and provide easy way to build up their branding.
 .</h4><br>
@@ -50,46 +50,46 @@ Through this system providing platform for our business user and general user to
 <!-- Container (Services Section) -->
 <div id="services" class="container-fluid text-center">
   <h2>SERVICES</h2>
-  <h4>What we offer</h4>
+  <h4>What we can provide</h4>
   <br>
   <div class="row slideanim">
     <div class="col-sm-4">
-      <span class="glyphicon glyphicon-off logo-small"></span>
-      <h4>POWER</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <span class="glyphicon glyphicon-ok logo-small" style="font-size:200%;"></span>
+      <h4>Simple</h4>
+      <p>Easy to Start , Easy to Use</p>
     </div>
     <div class="col-sm-4">
-      <span class="glyphicon glyphicon-heart logo-small"></span>
+      <span class="glyphicon glyphicon-heart logo-small" style="font-size:200%;"></span>
       <h4>LOVE</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <p>Keep Your Memory with your Love </p>
     </div>
     <div class="col-sm-4">
-      <span class="glyphicon glyphicon-lock logo-small"></span>
+      <span class="glyphicon glyphicon-thumbs-up logo-small" style="font-size:200%;"></span>
       <h4>JOB DONE</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <p>All the status is in your Control</p>
     </div>
   </div>
   <br><br>
   <div class="row slideanim">
     <div class="col-sm-4">
-      <span class="glyphicon glyphicon-leaf logo-small"></span>
-      <h4>GREEN</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <span class="glyphicon glyphicon-time logo-small" style="font-size:200%;"></span>
+      <h4>Save Time</h4>
+      <p>You can update your event anytime.</p>
     </div>
     <div class="col-sm-4">
-      <span class="glyphicon glyphicon-certificate logo-small"></span>
-      <h4>CERTIFIED</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <span class="glyphicon glyphicon-user logo-small" style="font-size:200%;"></span>
+      <h4>Make a Choice</h4>
+      <p>More option, More Idea </p>
     </div>
     <div class="col-sm-4">
-      <span class="glyphicon glyphicon-wrench logo-small"></span>
-      <h4 style="color:#303030;">HARD WORK</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <span class="glyphicon glyphicon-usd logo-small" style="font-size:200%;"></span>
+      <h4 style="color:#303030;">Save Money</h4>
+      <p>Online Service can help you save your Money</p>
     </div>
   </div>
 </div>
 
-<!-- Container (Portfolio Section) -->
+<!-- Container (Portfolio Section) 
 <div id="portfolio" class="container-fluid text-center bg-grey">
   <h2>Portfolio</h2><br>
   <h4>What we have created</h4>
@@ -115,12 +115,12 @@ Through this system providing platform for our business user and general user to
         <p>Yes, San Fran is ours</p>
       </div>
     </div>
-  </div><br>
+  </div><br>  -->
   
   <h2>What our customers say</h2>
-  <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+  <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">   
     <!-- Indicators -->
-    <ol class="carousel-indicators">
+    <ol class="carousel-indicators" style="display: none;">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>

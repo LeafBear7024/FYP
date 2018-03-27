@@ -46,6 +46,19 @@ $query .= "SELECT id
         WHEN eventtype = 6
             THEN 'Other'
         END) AS eventType
+    ,COALESCE(CASE 
+        WHEN eventbudget = 1
+            THEN '$0 - $1000'
+        END, CASE 
+        WHEN eventbudget = 2
+            THEN '$1001 - $5000'
+        END, CASE 
+        WHEN eventbudget = 3
+            THEN '$5001 - $10000'
+        END, CASE 
+        WHEN eventbudget = 4
+            THEN '$10000+'
+        END) AS eventBudget
 	,eventContact
 	,serviceproviderid
 	,requestedbyid

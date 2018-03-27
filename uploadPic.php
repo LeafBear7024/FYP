@@ -14,7 +14,7 @@ else {
 }
 $query = "  
 UPDATE user set profilepic = '" . $newFileName . "'
-WHERE username = '".$_POST["username"]."' 
+WHERE id = '".$_POST["userid"]."' 
 ";  
 $result = mysqli_query($DBcon, $query);  
 echo $result;

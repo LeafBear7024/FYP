@@ -51,7 +51,7 @@ font-size: 30px;
 color: #111;
 }
 .carousel-inner img {
-width: 65%; /* Set width to 100% */      
+width: 80%; /* Set width to 100% */      
 margin: auto;
 }
 
@@ -349,12 +349,11 @@ $(document).ready(function(){
                      data: {username:username, password:password, role : 1},  
                      success:function(data)  
                      {   
-                          if(data == 0)  
-                          {  
+                          if(data == 0) {  
                                alert("Wrong username / password, please try again!");  
-                          }  
-                          else  
-                          {  
+                          } else if(data == 2) {
+                               alert("This user account is currently inactive, please contact us for assistance!");
+                          } else {  
                                alert("Sign in successfully!"); 
                                $('#loginModal').hide();  
                                location.href= 'index.php';  

@@ -5,15 +5,17 @@ ob_start();
 ?>
 
 <!-- Page Put in Content-->
-<div id="band" class="container text-left" style="margin-top:50px" >
+<div id="about" class="container text-left" style="margin-top:50px" >
   <div class="row">
-    <div class="col-sm-8">
+    <div >
+      <div>
+      <img src="/fyp/image/our_company.jpg" style="width: 100%;">
+    </div>
       <h2>About Company </h2><br>
       <h4>Nowaday, people still using social platform method to contact their photography shop or photographer to find the job are inefficiency, they need to spend a lot of time on research in job detail such as requester background, job location, time, job detail…etc. Therefore, we would like to provide a safty and convenient platform to user to create their photograghy event easily. </p>
       <br><button class="btn btn-lg btn-danger" name="business_side" id="business_side1">Become our partner</button>
     </div>
-    <div class="col-sm-4">
-    </div>
+    
   </div>
 </div>
 

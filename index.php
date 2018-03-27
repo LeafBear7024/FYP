@@ -26,7 +26,7 @@ ob_start();
       </div>
 
       <div class="item">
-        <img src="/fyp/image/hkmainpic.jpg"  height="700">
+        <img src="/fyp/image/hkmainpic_2.jpg"  height="700">
         <div class="carousel-caption">
           <h3>Hong Kong</h3>
           <p> The Pearl of East- A night we won't forget</p>
@@ -34,7 +34,7 @@ ob_start();
       </div>
     
       <div class="item">
-        <img src="/fyp/image/familymainpic.jpg"  >
+        <img src="/fyp/image/familymainpic_1.jpg">
         <div class="carousel-caption">
           <h3>Family</h3>
           <p>Have a good time with your family</p>
@@ -42,7 +42,7 @@ ob_start();
       </div>
 
       <div class="item">
-        <img src="/fyp/image/modelmainpic.jpg" alt="Chicago"  height="700">
+        <img src="/fyp/image/modelmainpic_1.jpg" alt="Chicago"  height="700">
         <div class="carousel-caption">
           <h3>Beautiful</h3>
           <p> Everyone can be a model</p>
@@ -143,30 +143,50 @@ include("master.php");
                 <div class="row hide" data-step="1" data-title="What kind of service you want?">
                     <div class="col-md-12">
                         <div class="jumbotron text-center">
-                            <select name="eventType">
-                                <option value="1">Family Photography</option>
-                                <option value="2">Event Photography</option>
-                                <option value="3">Videography</option>
-                                <option value="4">Product Photography</option>
-                                <option value="5">Wedding Photography</option>
-                                <option value="6">Other</option>
-                            </select>
-                            </div>
+                            <div class="btn-group-vertical eventType" role="group" data-toggle="buttons">
+                            <label class="btn btn-default blue">
+                                <input type="radio" class="toggle" value="1"/>Family Photography
+                            </label>
+                            <label class="btn btn-default blue">
+                                <input type="radio" class="toggle" value="2"/>Event Photography
+                            </label>
+                            <label class="btn btn-default blue">
+                                <input type="radio" class="toggle" value="3"/>Videography
+                            </label>
+                            <label class="btn btn-default blue">
+                                <input type="radio" class="toggle" value="4"/>Product Photography
+                            </label>
+                            <label class="btn btn-default blue">
+                                <input type="radio" class="toggle" value="5"/>Wedding Photography
+                            </label>
+                            <label class="btn btn-default blue">
+                                <input type="radio" class="toggle" value="6"/>Other
+                            </label>
+                          </div>
+                        </div>
                     </div>
                 </div>
-                <div class="row hide" data-step="2" data-title="How much you are willing to pay">
+                <div class="row hide" data-step="2" data-title="What is the budget for this event?">
                     <div class="col-md-12">
                         <div class="jumbotron text-center">
-                            <select name="biz_budget">
-                                <option value="1">$0 - $1000</option>
-                                <option value="2">$1001 - $5000</option>
-                                <option value="3">$5001 - $10000</option>
-                                <option value="4">$10000+</option>
-                            </select>
-                            </div>
+                            <div class="btn-group-vertical eventBudget" role="group" data-toggle="buttons">
+                            <label class="btn btn-default blue">
+                                <input type="radio" class="toggle" value="1"/>$0 - $1000
+                            </label>
+                            <label class="btn btn-default blue">
+                                <input type="radio" class="toggle" value="2"/>$1001 - $5000
+                            </label>
+                            <label class="btn btn-default blue">
+                                <input type="radio" class="toggle" value="3"/>$5001 - $10000
+                            </label>
+                            <label class="btn btn-default blue">
+                                <input type="radio" class="toggle" value="4"/>$10000+
+                            </label>
+                        </div>
+                        </div>
                     </div>
                 </div>
-                <div class="row hide" data-step="3" data-title="Please give me more about your event!">
+                <div class="row hide" data-step="3" data-title="Please provide more details about your event!">
                     <div class="col-md-12">
                         <div class="jumbotron text-center">
                             <label>Event Name</label>  
@@ -206,13 +226,14 @@ $(document).ready(function() {
                 var eventInfo = $('#eventInfo').val();
                 var eventLocation = $('#eventLocation').val();
                 var eventDate = $('#eventDate').val();
-                var eventType = $('select[name=eventType]').val();
+                var eventType = $('.eventType label.active input').val();
+                var eventBudget = $('.eventBudget label.active input').val();
                 var eventContact = $('#eventContact').val();
                 var requestedbyid = $('#requestedbyid').val();
                 $.ajax({  
                     url:"createevent.php",  
                     method:"POST",  
-                    data: {eventName:eventName,eventInfo:eventInfo,eventType:eventType,eventLocation:eventLocation,eventDate:eventDate,eventContact:eventContact,serviceproviderid:0,requestedbyid:requestedbyid},  
+                    data: {eventName:eventName,eventInfo:eventInfo,eventType:eventType,eventBudget:eventBudget,eventLocation:eventLocation,eventDate:eventDate,eventContact:eventContact,serviceproviderid:0,requestedbyid:requestedbyid},  
                     success:function(data) {  
                         if(data == 1) {
                             alert("Event created successfully!");

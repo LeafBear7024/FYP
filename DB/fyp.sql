@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 26, 2018 at 05:50 PM
+-- Generation Time: Mar 27, 2018 at 05:46 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 5.6.33
 
@@ -33,6 +33,7 @@ CREATE TABLE `event` (
   `eventName` varchar(100) NOT NULL,
   `eventInfo` varchar(200) NOT NULL,
   `eventType` int(11) NOT NULL,
+  `eventBudget` int(11) NOT NULL,
   `eventLocation` varchar(100) NOT NULL,
   `eventDate` date NOT NULL,
   `eventContact` varchar(100) NOT NULL,
@@ -46,14 +47,18 @@ CREATE TABLE `event` (
 -- Dumping data for table `event`
 --
 
-INSERT INTO `event` (`id`, `eventName`, `eventInfo`, `eventType`, `eventLocation`, `eventDate`, `eventContact`, `serviceproviderid`, `requestedbyid`, `response`, `systemstatus`) VALUES
-(2, 'test', 'test', 1, 'hk', '2018-03-22', '2134', 13, 28, 1, 1),
-(3, 'test', 'test', 2, 'hk', '2018-03-21', '123123', 14, 11, 1, 1),
-(4, 'test', 'test', 3, 'hk', '2018-03-21', '12345', 18, 25, 3, 1),
-(5, 'test', '123', 4, '123', '2018-03-20', '123', 25, 25, 2, 1),
-(10, 'test', 'test', 2, 'test', '2018-11-27', '1234', 14, 25, 1, 1),
-(11, '123test', 'test', 6, 'test', '2018-11-27', '1234', 14, 25, 1, 1),
-(12, 'test', 'test', 4, 'hk', '2018-03-29', '1234556', 0, 25, 1, 1);
+INSERT INTO `event` (`id`, `eventName`, `eventInfo`, `eventType`, `eventBudget`, `eventLocation`, `eventDate`, `eventContact`, `serviceproviderid`, `requestedbyid`, `response`, `systemstatus`) VALUES
+(2, 'test', 'test', 1, 3, 'hk', '2018-03-22', '2134', 13, 28, 1, 1),
+(3, 'test', 'test', 2, 1, 'hk', '2018-03-21', '123123', 14, 11, 1, 1),
+(4, 'test', 'test', 3, 2, 'hk', '2018-03-21', '12345', 18, 25, 3, 1),
+(5, 'test', '123', 4, 4, '123', '2018-03-20', '123', 25, 25, 2, 1),
+(10, 'test', 'test', 2, 1, 'test', '2018-11-27', '1234', 14, 25, 1, 1),
+(11, '123test', 'test', 6, 2, 'test', '2018-11-27', '1234', 14, 25, 1, 1),
+(12, 'test', 'test', 4, 1, 'hk', '2018-03-29', '1234556', 0, 25, 1, 1),
+(13, 'test', 'test123', 3, 4, 'hk', '2017-07-27', '213456', 0, 25, 1, 1),
+(14, 'test', 'test', 4, 2, 'hk', '2018-03-29', '123456', 14, 25, 1, 1),
+(15, 'testforbudget', '123', 6, 3, 'hk', '2018-03-29', '1235', 13, 25, 1, 1),
+(17, 'testformyevent', 'test', 3, 4, 'hk', '2018-03-29', '123456', 0, 25, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -130,7 +135,7 @@ INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `contact`, `d
 (18, 'issac123', 'asd@fdasf.com', '21sad', 2, NULL, '', 2, 2, 2, '', 1, '2018-03-06 13:32:55'),
 (22, 'asdasd', 'asdsadasd@dasd.com', '12342345', 1, 314314, '', 1, 1, 1, NULL, 1, '2018-03-06 14:03:28'),
 (24, 'test123213', 'asfdsafd@asdas.xcom', '123123', 2, 124214, 'This is for description', 1, 1, 1, '5aa3f78dc0876.jpg', 1, '2018-03-06 14:47:11'),
-(25, 'issacbiz', 'isascbiz@gmail.com', '123456', 2, 60410199, 'I am model, welcome to find me', 2, 4, 4, '5aa3f76d85350.jpg', 1, '2018-03-08 13:29:12'),
+(25, 'issacbiz', 'isascbiz@gmail.com', '123456', 2, 60410199, 'I am model, welcome to find me', 2, 4, 4, '5aba6465201e3.png', 1, '2018-03-08 13:29:12'),
 (26, 'issacbiz2', 'wcas@casfasc.com', '123456', 2, 14124, 'I am good at taking photo', 1, 4, 1, '5aa3f73f09f46.jpg', 1, '2018-03-10 18:43:34'),
 (28, 'freeuser', 'freeuser@gmail.com', '123456', 5, 991234667, 'This is free user', 1, 3, 3, NULL, 1, '2018-02-05 18:50:39'),
 (30, 'test12345', 'asdsa@asda.com', '123456', 1, NULL, NULL, NULL, NULL, NULL, NULL, 2, '2018-03-18 13:15:07'),
@@ -168,7 +173,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `gallery`

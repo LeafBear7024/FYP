@@ -93,7 +93,7 @@ include("master.php");
         if(isset($getQueries)) {
             $query = "SELECT * FROM user t1 WHERE budget =" .$getQueries['budget']. " AND workingexp = ". $getQueries['workingexp'] ." AND speciality = ". $getQueries['speciality'];
         } else {
-            $query = "SELECT * FROM user t1 WHERE role = 2 or role = 5";
+            $query = "SELECT * FROM user t1 WHERE (role = 2 or role = 5) AND systemstatus = 1";
         }
     
         if(isset($_SESSION['userid'])) {
@@ -136,7 +136,7 @@ include("master.php");
               <h4><?=$username?></h4>
             </div>
               <button type="button" class="btn btn-info moreinfo" data-toggle="modal" data-serviceprovider="<?=$username?>" data-serviceproviderid="<?=$serviceproviderid?>" data-workingexp="<?=$workingexp?>" data-speciality="<?=$speciality?>" data-contact="<?=$contact?>" data-description="<?=$description?>">More Info</button>
-            <button type="button" class="btn btn-info interested" data-toggle="modal" data-serviceprovider="<?=$username?>" data-serviceproviderid="<?=$serviceproviderid?>">I'm Interested!</button>
+            <button type="button" class="btn btn-info interested" data-toggle="modal" data-serviceprovider="<?=$username?>" data-serviceproviderid="<?=$serviceproviderid?>">Hire Me</button>
           </div>
     <?php
                 }
@@ -168,6 +168,15 @@ include("master.php");
                 <option value="4">Product Photography</option>
                 <option value="5">Wedding Photography</option>
                 <option value="6">Other</option>
+              </select>
+              <br /><br />
+               <label>Event Budget</label>               
+              <br />
+              <select name="eventBudget">
+                <option value="1">$0 - $1000</option>
+                <option value="2">$1001 - $5000</option>
+                <option value="3">$5001 - $10000</option>
+                <option value="4">$10000+</option>
               </select>
              <br /><br />
              <label>Event Details</label>  
@@ -360,16 +369,17 @@ $(document).ready(function() {
         var eventLocation = $('#eventLocation').val();
         var eventDate = $('#eventDate').val();
         var eventType = $('select[name=eventType]').val();
+        var eventBudget = $('select[name=eventBudget]').val();
         var eventContact = $('#eventContact').val();
         var serviceproviderid = $('#serviceproviderid').val();
         var requestedbyid = $('#requestedbyid').val();
         $.ajax({  
             url:"createevent.php",  
             method:"POST",  
-            data: {eventName:eventName,eventInfo:eventInfo,eventType:eventType,eventLocation:eventLocation,eventDate:eventDate,eventContact:eventContact,serviceproviderid:serviceproviderid,requestedbyid:requestedbyid},  
+            data: {eventName:eventName,eventInfo:eventInfo,eventType:eventType,eventBudget:eventBudget,eventLocation:eventLocation,eventDate:eventDate,eventContact:eventContact,serviceproviderid:serviceproviderid,requestedbyid:requestedbyid},  
             success:function(data) {  
                 if(data == 1) {
-                    alert("Event created successfully!");
+                    alert("Event created successfully!");                            window.location="myevent.php" 
                 } else {
                     alert("There is an error occurred, please try again later");
                 }
