@@ -400,6 +400,9 @@ $(document).ready(function(){
 =======
         form_data.append('userid', <?=$_SESSION['userid']?>); // Username
 >>>>>>> 2eb977c64ea383776f03c610539a833bd57682f3
+=======
+        form_data.append('userid', <?=$_SESSION['userid']?>); // Username
+>>>>>>> 2eb977c64ea383776f03c610539a833bd57682f3
         form_data.append('file', file_data);  // File
 
         // check if user upload image
