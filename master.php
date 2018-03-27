@@ -51,7 +51,7 @@ font-size: 30px;
 color: #111;
 }
 .carousel-inner img {
-width: 65%; /* Set width to 100% */      
+width: 70%; /* Set width to 100% */      
 margin: auto;
 }
 

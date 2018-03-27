@@ -26,7 +26,7 @@ ob_start();
       </div>
 
       <div class="item">
-        <img src="/fyp/image/hkmainpic.jpg"  height="700">
+        <img src="/fyp/image/hkmainpic_2.jpg"  height="700">
         <div class="carousel-caption">
           <h3>Hong Kong</h3>
           <p> The Pearl of East- A night we won't forget</p>
@@ -34,7 +34,7 @@ ob_start();
       </div>
     
       <div class="item">
-        <img src="/fyp/image/familymainpic.jpg"  >
+        <img src="/fyp/image/familymainpic_1.jpg">
         <div class="carousel-caption">
           <h3>Family</h3>
           <p>Have a good time with your family</p>
@@ -42,7 +42,7 @@ ob_start();
       </div>
 
       <div class="item">
-        <img src="/fyp/image/modelmainpic.jpg" alt="Chicago"  height="700">
+        <img src="/fyp/image/modelmainpic_1.jpg" alt="Chicago"  height="700">
         <div class="carousel-caption">
           <h3>Beautiful</h3>
           <p> Everyone can be a model</p>
