@@ -395,7 +395,7 @@ $(document).ready(function(){
 
         var file_data = $('#profile-image-upload').prop('files')[0];  
         var form_data = new FormData();    
-        form_data.append('username', username); // Username
+        form_data.append('userid', <?=$_SESSION['userid']?>); // Username
         form_data.append('file', file_data);  // File
 
         // check if user upload image
@@ -416,7 +416,7 @@ $(document).ready(function(){
                   } else {
                     alert("Sorry, there is an error, please try again later");
                   }
-                  location.reload();
+                  // location.reload();
               }
            });
 

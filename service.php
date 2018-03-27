@@ -93,7 +93,7 @@ include("master.php");
         if(isset($getQueries)) {
             $query = "SELECT * FROM user t1 WHERE budget =" .$getQueries['budget']. " AND workingexp = ". $getQueries['workingexp'] ." AND speciality = ". $getQueries['speciality'];
         } else {
-            $query = "SELECT * FROM user t1 WHERE role = 2 or role = 5";
+            $query = "SELECT * FROM user t1 WHERE (role = 2 or role = 5) AND systemstatus = 1";
         }
     
         if(isset($_SESSION['userid'])) {
