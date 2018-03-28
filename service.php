@@ -136,7 +136,7 @@ include("master.php");
               <h4><?=$username?></h4>
             </div>
               <button type="button" class="btn btn-info moreinfo" data-toggle="modal" data-serviceprovider="<?=$username?>" data-serviceproviderid="<?=$serviceproviderid?>" data-workingexp="<?=$workingexp?>" data-speciality="<?=$speciality?>" data-contact="<?=$contact?>" data-description="<?=$description?>">More Info</button>
-            <button type="button" class="btn btn-info interested" data-toggle="modal" data-serviceprovider="<?=$username?>" data-serviceproviderid="<?=$serviceproviderid?>">Hire Me</button>
+            <button type="button" class="btn btn-info interested" data-toggle="modal" data-serviceprovider="<?=$username?>" data-serviceproviderid="<?=$serviceproviderid?>">Invite Me</button>
           </div>
     <?php
                 }
