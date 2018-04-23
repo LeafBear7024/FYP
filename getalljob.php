@@ -1,8 +1,5 @@
 <?php
 include("db_connect.php");
-if($_POST['userrole'] != 3) {
-    exit;
-}
 $query = '';
 $data = array();
 $records_per_page = 10;
@@ -29,7 +26,7 @@ $query .= "SELECT id
 	,eventName
 	,eventInfo
 	,eventLocation
-	,eventDate    
+	,eventDate
     ,COALESCE(CASE 
         WHEN eventtype = 1
             THEN 'Famiy Photography'
@@ -76,7 +73,7 @@ $query .= "SELECT id
 				THEN 'Rejected'
 			END) AS response
     ,CASE WHEN systemstatus = 1 THEN 'Active' ELSE 'Inactive' END as systemstatus
-FROM event ";
+FROM event WHERE requestedbyid != ". $_POST['userid'] . " AND serviceproviderid = 0 AND systemstatus = 1";
 
 if(!empty($_POST["searchPhrase"]))
 {
@@ -97,7 +94,7 @@ if(isset($_POST["sort"]) && is_array($_POST["sort"]))
 }
 else
 {
- $query .= 'ORDER BY event.id DESC ';
+ $query .= ' ORDER BY event.id DESC ';
 }
 if($order_by != '')
 {
@@ -109,7 +106,8 @@ if($records_per_page != -1)
 }
 
 $result = mysqli_query($DBcon, $query);
-$total_records=0;
+
+$total_records = 0;
 if($result) {
     while($row = mysqli_fetch_assoc($result))
     {
@@ -118,8 +116,7 @@ if($result) {
     $total_records = mysqli_num_rows($result);
 }
 
-$query1 = "SELECT * FROM event ";
-$result1 = mysqli_query($DBcon, $query1);
+$result1 = mysqli_query($DBcon, $query);
 
 $output = array(
  'current'  => intval($_POST["current"]),

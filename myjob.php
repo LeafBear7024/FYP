@@ -49,7 +49,7 @@ include("master.php");
     labels: {
         noResults: 'No job is found right now!'
     },
-    url: "getmyevent.php",
+    url: "getmyjob.php",
     formatters: {
         "commands": function(column, row) {  
             if(row.response == 'Pending') {

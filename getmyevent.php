@@ -106,16 +106,16 @@ if($records_per_page != -1)
 }
 
 $result = mysqli_query($DBcon, $query);
-
+$total_records =0;
 if($result) {
     while($row = mysqli_fetch_assoc($result))
     {
      $data[] = $row;
     }
+    $total_records = mysqli_num_rows($result);
 }
 
 $result1 = mysqli_query($DBcon, $query);
-$total_records = mysqli_num_rows($result);
 
 $output = array(
  'current'  => intval($_POST["current"]),
