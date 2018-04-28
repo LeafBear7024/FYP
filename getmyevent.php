@@ -71,7 +71,7 @@ $query .= "SELECT t1.id
 			WHEN RESPONSE = 2
 				THEN 'Accpeted'
 			END, CASE 
-			WHEN RESPONSE = 3
+			WHEN RESPONSE = 3 OR RESPONSE = 6
 				THEN 'Rejected'
 			END, CASE 
 			WHEN RESPONSE = 4
@@ -81,7 +81,7 @@ $query .= "SELECT t1.id
 				THEN 'Waiting'
 			END) AS response
     ,CASE WHEN t1.systemstatus = 1 THEN 'Active' ELSE 'Inactive' END as systemstatus
-FROM event t1 LEFT JOIN user t2 ON t1.serviceproviderid = t2.id WHERE requestedbyid = ". $_POST['userid'] . " ";
+FROM event t1 LEFT JOIN user t2 ON t1.serviceproviderid = t2.id WHERE requestedbyid = ". $_POST['userid'] . " and t1.systemstatus = 1 ";
 
 if(!empty($_POST["searchPhrase"]))
 {

@@ -52,7 +52,7 @@ $query .= "SELECT t1.id
 			WHEN RESPONSE = 2
 				THEN 'Accpeted'
 			END, CASE 
-			WHEN RESPONSE = 3
+			WHEN RESPONSE = 3 OR RESPONSE = 6
 				THEN 'Rejected'
 			END, CASE 
 			WHEN RESPONSE = 4

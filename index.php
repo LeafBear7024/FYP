@@ -194,7 +194,8 @@ include("master.php");
                             <label>Event Date</label>  
                             <input id="eventDate" type="text" class="form-control" required/>  
                             <label>Event Details</label>  
-                            <input type="text" name="eventinfo" id="eventInfo" class="form-control" required/>  
+                            <textarea name="eventinfo" id="eventInfo" class="form-control" style="resize:none"></textarea>
+                            <!-- <input type="text" name="eventinfo" id="eventInfo" class="form-control" required/>   -->
                             <label>Event Location</label>  
                             <input type="text" name="eventlocation" id="eventLocation" class="form-control" required/> 
                             <label>Contact Info</label>  
@@ -233,7 +234,7 @@ $(document).ready(function() {
                 $.ajax({  
                     url:"createevent.php",  
                     method:"POST",  
-                    data: {eventName:eventName,eventInfo:eventInfo,eventType:eventType,eventBudget:eventBudget,eventLocation:eventLocation,eventDate:eventDate,eventContact:eventContact,serviceproviderid:0,requestedbyid:requestedbyid},  
+                    data: {eventName:eventName,eventInfo:eventInfo,eventType:eventType,eventBudget:eventBudget,eventLocation:eventLocation,eventDate:eventDate,eventContact:eventContact,serviceproviderid:0,requestedbyid:requestedbyid,response:4},  
                     success:function(data) {  
                         if(data == 1) {
                             alert("Event created successfully!");

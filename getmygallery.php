@@ -22,8 +22,8 @@ else
 $start_from = ($current_page_number - 1) * $records_per_page;
 
 $query = "  
-      SELECT id,filename,userid, CASE WHEN systemstatus = 1 THEN 'Active' ELSE 'Inactive' END as systemstatus, datetime from gallery
-      WHERE userid = ".$_POST["userid"]. " ";
+      SELECT id,filename,userid,  datetime from gallery
+      WHERE userid = ".$_POST["userid"]. " and systemstatus = 1 ";
 if(!empty($_POST["searchPhrase"]))
 {
  $query .= 'AND (filename LIKE "%'.$_POST["searchPhrase"].'%" ) ';

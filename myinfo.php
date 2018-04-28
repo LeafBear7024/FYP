@@ -374,6 +374,8 @@ $(document).ready(function(){
   $('#update').click(function() {
      $('#updateInfo').modal('show'); 
   });
+
+  // update profile pic
   $('#profilepic').on('click', function() {
       $('#profile-image-upload').click();
       $('#profile-image-upload').change(function() {

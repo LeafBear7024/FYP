@@ -22,10 +22,12 @@ include("master.php");
         <tr ng-click="selectPerson()">
           <th data-column-id="eventName">Name</th>
           <th data-column-id="eventDate">Date</th>
-          <th data-column-id="eventType">Type</th>
-          <th data-column-id="eventInfo">Detail</th>
+          <!-- <th data-column-id="eventType">Type</th> -->
+          <!-- <th data-column-id="eventInfo">Detail</th> -->
           <th data-column-id="eventBudget">Budget</th>
-          <th data-column-id="eventLocation">Location</th> 
+          <th data-column-id="requestedbyname">Requester</th>
+          <th data-column-id="requestedbyemail">Email</th>
+          <!-- <th data-column-id="eventLocation">Location</th>  -->
           <th data-column-id="eventContact">Contact</th>
           <th data-column-id="response">Status</th>
           <th data-column-id="commands" data-formatter="commands" data-sortable="false">Actions</th>
@@ -66,7 +68,7 @@ include("master.php");
                             </strong>
                         </td>
                         <td class="text-primary">
-                            <textarea id="eventDetail_eventInfo" readonly style="resize:none"></textarea>
+                            <textarea id="eventDetail_eventInfo" readonly style="resize:none" cols=50 rows=8></textarea>
                         </td>
                     </tr>
                     <tr>        

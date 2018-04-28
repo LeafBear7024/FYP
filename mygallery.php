@@ -16,7 +16,6 @@ ob_start();
           <thead>
             <tr ng-click="selectPerson()">
               <th data-column-id="filename">File Name</th>
-              <th data-column-id="systemstatus">SystemStatus</th>
               <th data-column-id="datetime">Create Time</th>
               <th data-column-id="commands" data-formatter="commands" data-sortable="false">Actions</th>
             </tr>
@@ -72,16 +71,16 @@ include("master.php");
     url: "getmygallery.php",
     formatters: {
         "commands": function(column, row) {  
-            if(row.systemstatus == 'Active') {
-                var btn= "<button type='button' class='btn btn-danger btn-xs Inactive' data-row-id='"+row.id+"'>Inactive</button>";
-            } else {
-               var btn= "<button type='button' class='btn btn-success btn-xs Active' data-row-id='"+row.id+"'>Active</button>";
-            }
-            return "<button type='button' class='btn btn-info btn-xs Preview' data-row-userid='"+row.userid+"' data-row-image='"+row.filename+"'>Preview</button> " + btn;
+            // if(row.systemstatus == 'Active') {
+            //     var btn= "<button type='button' class='btn btn-danger btn-xs Delete' data-row-id='"+row.id+"'>Delete</button>";
+            // } else {
+            //    var btn= "<button type='button' class='btn btn-success btn-xs Active' data-row-id='"+row.id+"'>Active</button>";
+            // }
+            return "<button type='button' class='btn btn-info btn-xs Preview' data-row-userid='"+row.userid+"' data-row-image='"+row.filename+"'>Preview</button> <button type='button' class='btn btn-danger btn-xs Delete' data-row-id='"+row.id+"'>Delete</button>";;
         }
     }
    }).on("loaded.rs.jquery.bootgrid", function() {
-    grid.find(".Inactive").on("click", function(e)
+    grid.find(".Delete").on("click", function(e)
     {
         var clickedId = $(this).data("row-id");
         var response = updateGallery(clickedId, 2);
@@ -119,6 +118,7 @@ include("master.php");
         });
     }
 
+    // upload to Gallery
     <?php $timestamp = time();?>
     $(function() {
       $('#file_upload').uploadify({
@@ -131,7 +131,11 @@ include("master.php");
         'uploader' : 'uploadify.php',
         'removeTimeout' : 60,
         'onUploadSuccess' : function(file, data, response) {
-            alert('Upload successfully');
+            if(data ==1) {
+              alert('Upload successfully');
+            } else {
+              alert(data);
+            }
             $('#uploadToGallery').modal('hide');
             grid.bootgrid('reload');
         }

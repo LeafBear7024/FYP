@@ -21,10 +21,10 @@ include("master.php");
     <table id="event_data" class="table table-condensed table-hover table-striped">
       <thead>
         <tr ng-click="selectPerson()">
-<!--          <th data-column-id="eventName">Name</th>-->
+          <th data-column-id="eventName">Name</th>
           <th data-column-id="eventDate">Date</th>
 <!--          <th data-column-id="eventType">Event Type</th>-->
-          <th data-column-id="eventInfo">Detail</th>
+          <!-- <th data-column-id="eventInfo">Detail</th> -->
           <th data-column-id="eventBudget">Budget</th>
 <!--          <th data-column-id="eventLocation">Event location</th> -->
           <th data-column-id="serverprovidername">Provider</th>
@@ -93,7 +93,8 @@ include("master.php");
           </select>
          <br /><br />
          <label>Event Details</label>  
-         <input type="text" name="eventinfo" id="eventInfo" class="form-control" required/>  
+         <textarea name="eventinfo" id="eventInfo" class="form-control" style="resize:none"></textarea>
+         <!-- <input type="text" name="eventinfo" id="eventInfo" class="form-control" required/>   -->
          <label>Event Location</label>  
          <input type="text" name="eventlocation" id="eventLocation" class="form-control" required/> 
          <label>Contact Info</label>  
@@ -138,7 +139,7 @@ include("master.php");
                             </strong>
                         </td>
                         <td class="text-primary">
-                            <textarea id="eventDetail_eventInfo" readonly style="resize:none"></textarea>
+                            <textarea id="eventDetail_eventInfo" readonly style="resize:none" cols=50 rows=8></textarea>
                         </td>
                     </tr>
                     <tr>        
@@ -243,7 +244,8 @@ include("master.php");
             data: {eventName:eventName,eventInfo:eventInfo,eventType:eventType,eventBudget:eventBudget,eventLocation:eventLocation,eventDate:eventDate,eventContact:eventContact,serviceproviderid:serviceproviderid,requestedbyid:requestedbyid,response:4},  
             success:function(data) {  
                 if(data == 1) {
-                    alert("Event created successfully!");                            window.location="myevent.php" 
+                    alert("Event created successfully!");                            
+                    window.location="myevent.php";
                 } else {
                     alert("There is an error occurred, please try again later");
                 }
@@ -289,7 +291,7 @@ include("master.php");
     }).end().find(".reject").on("click", function(e)
     {
         var clickedId = $(this).data("row-id");
-        var response = updateEvent(clickedId, 3);
+        var response = updateEvent(clickedId, 6);
     }).end().find(".detail").on("click", function(e)
     {
         var eventID = $(this).data("row-id");

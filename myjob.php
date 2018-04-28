@@ -9,13 +9,13 @@ ob_start();
   <div class="table-responsive">
   <div>
     <div class="col-md-12">
-    
+    <button type="button" class="btn btn-danger getAJob" data-toggle="modal">Get A Job!</button>
     <table id="event_data" class="table table-condensed table-hover table-striped">
       <thead>
         <tr ng-click="selectPerson()">
-<!--          <th data-column-id="eventName">Job Name</th>-->
+          <th data-column-id="eventName">Name</th>
           <th data-column-id="eventDate">Date</th>
-          <th data-column-id="eventInfo">Detail</th>
+          <!-- <th data-column-id="eventInfo">Detail</th> -->
 <!--          <th data-column-id="eventLocation">Job location</th> -->
           <th data-column-id="eventBudget">Budget</th>
           <th data-column-id="requestedbyname">Requester</th>
@@ -61,7 +61,7 @@ ob_start();
                             </strong>
                         </td>
                         <td class="text-primary">
-                            <textarea id="eventDetail_eventInfo" readonly style="resize:none"></textarea>
+                            <textarea id="eventDetail_eventInfo" readonly style="resize:none" cols=50 rows=8></textarea>
                         </td>
                     </tr>
                     <tr>        
@@ -149,6 +149,9 @@ include("master.php");
 
 <script>  
  $(document).ready(function(){  
+    $('.getAJob').click(function() {
+        location.href = "getajob.php"
+    });
   var grid = $('#event_data').bootgrid({
     ajax: true,
     rowSelect: true,
