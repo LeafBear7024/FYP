@@ -10,8 +10,9 @@
  $eventContact = $_POST['eventContact'];
  $serviceproviderid = $_POST['serviceproviderid'];
  $requestedbyid = $_POST['requestedbyid'];
+ $response = isset($_POST['response']) ? $_POST['response']: 1;
   $query = "  
-  INSERT INTO event (eventName, eventInfo, eventType, eventBudget, eventLocation, eventDate, eventContact, serviceproviderid, requestedbyid) VALUES ('$eventName', '$eventInfo', '$eventType', '$eventBudget', '$eventLocation', '$eventDate', '$eventContact', '$serviceproviderid', '$requestedbyid');
+  INSERT INTO event (eventName, eventInfo, eventType, eventBudget, eventLocation, eventDate, eventContact, serviceproviderid, requestedbyid, response) VALUES ('$eventName', '$eventInfo', '$eventType', '$eventBudget', '$eventLocation', '$eventDate', '$eventContact', '$serviceproviderid', '$requestedbyid', $response);
   "; 
   $result = mysqli_query($connect, $query); 
   if($result)  

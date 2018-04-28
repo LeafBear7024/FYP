@@ -71,6 +71,12 @@ $query .= "SELECT id
 			END, CASE 
 			WHEN RESPONSE = 3
 				THEN 'Rejected'
+			END, CASE 
+			WHEN RESPONSE = 4
+				THEN 'Vacant'
+			END, CASE 
+			WHEN RESPONSE = 5
+				THEN 'Waiting'
 			END) AS response
     ,CASE WHEN systemstatus = 1 THEN 'Active' ELSE 'Inactive' END as systemstatus
 FROM event WHERE requestedbyid != ". $_POST['userid'] . " AND serviceproviderid = 0 AND systemstatus = 1";

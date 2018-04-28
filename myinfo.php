@@ -87,12 +87,7 @@ ob_start();
                             </strong>
                         </td>
                         <td class="text-primary">
-                              <select name="myinfo_budget" disabled=true>
-                                <option value="1">$0 - $1000</option>
-                                <option value="2">$1001 - $5000</option>
-                                <option value="3">$5001 - $10000</option>
-                                <option value="4">$10000+</option>
-                              </select>
+                            <div id="myinfo_budget"></div> 
                         </td>
                     </tr>   
                     <tr class="bizUserInfo" style="display:none">        
@@ -103,13 +98,7 @@ ob_start();
                             </strong>
                         </td>
                         <td class="text-primary">
-                              <select name="myinfo_speciality" disabled=true>
-                                <option value="1">Photographer</option>
-                                <option value="2">MakeupArtist</option>
-                                <option value="3">Fashion Shop</option>
-                                <option value="4">Model</option>
-                                <option value="5">Venue</option>
-                              </select>
+                            <div id="myinfo_speciality"></div> 
                         </td>
                     </tr>   
                     <tr class="bizUserInfo" style="display:none">        
@@ -119,13 +108,9 @@ ob_start();
                                 Working Experience                                                
                             </strong>
                         </td>
+
                         <td class="text-primary">
-                              <select name="myinfo_workingexp" disabled=true>
-                                <option value="1">0 - 2 Years</option>
-                                <option value="2">3 - 5 Years</option>
-                                <option value="3">6 - 10 Years</option>
-                                <option value="4">10 Years+</option>
-                              </select>
+                            <div id="myinfo_workingexp"></div> 
                         </td>
                     </tr>   
                     <tr>        
@@ -142,7 +127,7 @@ ob_start();
 
                      <tr>        
                         <td>
-                           <button class="btn btn-primary navbar-btn" name="update" id="update">Update</button> 
+                           <button class="btn btn-primary navbar-btn" name="update" id="update">Change</button> 
                         </td>
                     </tr>                                      
                 </tbody>
@@ -165,7 +150,7 @@ ob_start();
          <label>Email</label>  
          <input type="text" name="form_email" id="form_email" class="form-control" required/>  
          <label>Password</label>  
-         <input type="password" name="form_password" id="form_password" class="form-control" placeholder="Leave blank if your password remain unchanged" required/>
+         <input type="password" name="form_password" id="form_password" class="form-control" placeholder="Leave blank if your password remains unchanged" required/>
           
           <!--- business user info---->
          <div class="bizUserInfo" style="display:none">
@@ -301,9 +286,9 @@ $(document).ready(function(){
           // preset info
           $('#myinfo_contact').text(resultData.contact);
           $('#myinfo_description').text(resultData.description);
-          $('select[name=myinfo_budget]').val(resultData.budget);
-          $('select[name=myinfo_speciality]').val(resultData.speciality);
-          $('select[name=myinfo_workingexp]').val(resultData.workingexp);
+          $('#myinfo_budget').text(resultData.budgetDetail);
+          $('#myinfo_speciality').text(resultData.specialityDetail);
+          $('#myinfo_workingexp').text(resultData.workingexpDetail);
           
           // preset updateinfo
           $('#form_contact').val(resultData.contact);
@@ -377,7 +362,7 @@ $(document).ready(function(){
               success: function(response){
                   if(response == 1) {
                     alert("Your Info has been updated successfully!");
-                      location.reload();
+                    location.reload();
                   } else if(response == 2) {
                       alert("Email has already been used, please try another one");
                   } else {
@@ -414,6 +399,7 @@ $(document).ready(function(){
               success: function(response){
                   if(response == 1) {
                     alert("Profile picture updated successfully!");
+                    location.reload();
                   } else {
                     alert("Sorry, there is an error, please try again later");
                   }

@@ -1,28 +1,33 @@
 <?php
-$pagetitle = "My Job";
+$pagetitle = "Get Your Job";
 ob_start();
 ?>
+<?php
+//將緩衝區的內容放到變數裏面，然後清除緩衝區
+$pagemaincontent = ob_get_contents();
+ob_end_clean();
+//套用主板頁面
+include("master.php");
+?>
+
 
 <div id="band" class="container text-left" style="margin-top:50px" >
-  <h1>My Job</h1>
+  <h1>Get Your Job</h1>
   
   <div class="table-responsive">
   <div>
     <div class="col-md-12">
-    
     <table id="event_data" class="table table-condensed table-hover table-striped">
       <thead>
         <tr ng-click="selectPerson()">
-<!--          <th data-column-id="eventName">Job Name</th>-->
+          <th data-column-id="eventName">Name</th>
           <th data-column-id="eventDate">Date</th>
+          <th data-column-id="eventType">Type</th>
           <th data-column-id="eventInfo">Detail</th>
-<!--          <th data-column-id="eventLocation">Job location</th> -->
           <th data-column-id="eventBudget">Budget</th>
-          <th data-column-id="requestedbyname">Requester</th>
-          <th data-column-id="requestedbyemail">Email</th>
-<!--          <th data-column-id="eventContact">Job contact</th>-->
-          <th data-column-id="response" >Response</th>
-<!--          <th data-column-id="systemstatus">SystemStatus</th>-->
+          <th data-column-id="eventLocation">Location</th> 
+          <th data-column-id="eventContact">Contact</th>
+          <th data-column-id="response">Status</th>
           <th data-column-id="commands" data-formatter="commands" data-sortable="false">Actions</th>
         </tr>
       </thead>  
@@ -138,17 +143,17 @@ ob_start();
         </div>
       </div>
     </div>
-</div>
-<?php
-//將緩衝區的內容放到變數裏面，然後清除緩衝區
-$pagemaincontent = ob_get_contents();
-ob_end_clean();
-//套用主板頁面
-include("master.php");
-?>
-
+</div>    
 <script>  
  $(document).ready(function(){  
+     $('#eventDate').datetimepicker({
+      timepicker:false,
+      format:'Y-m-d',
+      minDate: new Date()
+    });
+    $('.createEventBtn').click(function() {
+        $('#createEvent').modal('show');
+    });
   var grid = $('#event_data').bootgrid({
     ajax: true,
     rowSelect: true,
@@ -160,29 +165,31 @@ include("master.php");
         };
     },
     labels: {
-        noResults: 'No job is found right now!'
+        noResults: 'No event is found right now!'
     },
-    url: "getmyjob.php",
+    url: "getalljob.php",
     formatters: {
-        "commands": function(column, row) { 
+        "commands": function(column, row) {  
             var actionBtn = "";
-            if(row.response == 'Pending') {
-                actionBtn =  "<button type='button' class='btn btn-danger btn-xs reject' data-row-id='"+row.id+"'>Reject</button>" + 
-                "&nbsp;<button type='button' class='btn btn-success btn-xs accept' data-row-id='"+row.id+"'>Accpet</button>";
+            if(row.response == 'Vacant') {
+                actionBtn = "<button type='button' class='btn btn-danger btn-xs Apply' data-row-id='"+row.id+"'>Apply</button>";
+            } else {
+//               return "<button type='button' class='btn btn-success btn-xs Active' data-row-id='"+row.id+"'>Active</button>";
             }
             var detailBtn = "<button type='button' class='btn btn-info btn-xs detail' data-row-id='"+row.id+"'>Detail</button>";
             return actionBtn + "  " + detailBtn;
         }
     }
    }).on("loaded.rs.jquery.bootgrid", function() {
-    grid.find(".accept").on("click", function(e)
+    grid.find(".Apply").on("click", function(e)
+    {
+        var serviceproviderid =  "<?=$_SESSION['userid']?>";
+        var clickedId = $(this).data("row-id");
+        var response = applyJob(clickedId, 5, serviceproviderid);
+    }).end().find(".Active").on("click", function(e)
     {
         var clickedId = $(this).data("row-id");
-        var response = updateEvent(clickedId, 2);
-    }).end().find(".reject").on("click", function(e)
-    {
-        var clickedId = $(this).data("row-id");
-        var response = updateEvent(clickedId, 3);
+        var response = updateEvent(clickedId, 1);
     }).end().find(".detail").on("click", function(e)
     {
         var eventID = $(this).data("row-id");
@@ -190,7 +197,7 @@ include("master.php");
     });
    });
      
-     function getEvent(eventID) {
+      function getEvent(eventID) {
          $.ajax({  
             url:"geteventdetail.php",  
             method:"POST",  
@@ -215,14 +222,14 @@ include("master.php");
         });
     }
      
-    function updateEvent(clickedId, action) {
+    function applyJob(clickedId, action, serviceproviderid) {
          $.ajax({  
-            url:"updatemyjob.php",  
+            url:"applyjob.php",  
             method:"POST",  
-            data: {clickedId:clickedId, action:action},  
+            data: {clickedId:clickedId, action:action, serviceproviderid: serviceproviderid},  
             success:function(data) {  
                 if(data == 1) {
-                    alert("Update successfully");
+                    alert("Apply job successfully!");
                     grid.bootgrid('reload');
                 } else {
                     alert("There is an error when updateing");

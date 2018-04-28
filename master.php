@@ -182,7 +182,7 @@ h1 {
         <?php
          if(isset($_SESSION['username'])){
              if(isset($_SESSION['username']) && ($_SESSION['role'] == 2 || $_SESSION['role'] == 5)) {
-                 echo "<a class=\"btn btn-danger\" href=\"getyourjob.php\" >Get Your Job</a>";
+                 echo "<a class=\"btn btn-danger\" href=\"getajob.php\" >Get A Job!</a>";
              }
         ?>  
         <a class="btn btn-primary" href="myinfo.php" ><?php echo $_SESSION['username']; ?></a>
