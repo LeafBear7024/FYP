@@ -20,10 +20,10 @@ if(isset($_POST['userid'])) {
         $tempFile = $_FILES['Filedata']['tmp_name'];
         $originalFileName = $_FILES['Filedata']['name'];
         $file_extension = strrchr($originalFileName, ".");
-        $newFileName = uniqid() . $file_extension;
+        //$newFileName = uniqid() . $file_extension;
         $targetPath = $documentRoot . $targetFolder;
         // $targetPath = $_SERVER['DOCUMENT_ROOT'] . $targetFolder;
-        $targetFile = rtrim($targetPath,'/') . '/' . $newFileName;
+        $targetFile = rtrim($targetPath,'/') . '/' . $originalFileName;
         // Validate the file type
         $fileTypes = array('jpg','jpeg','gif','png'); // File extensions
         $fileParts = pathinfo($originalFileName);
@@ -31,7 +31,7 @@ if(isset($_POST['userid'])) {
         if (in_array($fileParts['extension'],$fileTypes)) {
             if(move_uploaded_file($tempFile,$targetFile)) {
                 $query = "  
-                INSERT gallery (userid, filename) VALUES('" . $userid . "', '" . $newFileName ."')
+                INSERT gallery (userid, filename) VALUES('" . $userid . "', '" . $originalFileName ."')
                 ";  
                 $result = mysqli_query($DBcon, $query);  
                 echo '1';

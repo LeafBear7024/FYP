@@ -27,6 +27,7 @@ include("master.php");
           <th data-column-id="eventDate">Event Date</th>
           <th data-column-id="eventType">Event Type</th>
           <th data-column-id="eventInfo">Event Detail</th>
+          <th data-column-id="eventBudget">Event Budget</th>
           <th data-column-id="eventLocation">Event location</th> 
           <th data-column-id="eventContact">Event contact</th>
           <th data-column-id="response">Response</th>

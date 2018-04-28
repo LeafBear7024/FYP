@@ -22,14 +22,29 @@ else
 $start_from = ($current_page_number - 1) * $records_per_page;
 
 // check if that user is serviceprovider / requester
-$query .= "SELECT id
+$query .= "SELECT t1.id
 	,eventName
-	,eventInfo
+	,CONCAT(LEFT(eventInfo,20), '...') as eventInfo
 	,eventLocation
 	,eventDate
 	,eventContact
 	,serviceproviderid
-	,requestedbyid
+    ,COALESCE(CASE 
+        WHEN eventbudget = 1
+            THEN '$0 - $1000'
+        END, CASE 
+        WHEN eventbudget = 2
+            THEN '$1001 - $5000'
+        END, CASE 
+        WHEN eventbudget = 3
+            THEN '$5001 - $10000'
+        END, CASE 
+        WHEN eventbudget = 4
+            THEN '$10000+'
+        END) AS eventBudget
+	,requestedbyid    
+    ,CASE WHEN t2.username IS NULL THEN '-' ELSE t2.username END as requestedbyname
+    ,CASE WHEN t2.email IS NULL THEN '-' ELSE t2.email END as requestedbyemail
 	,COALESCE(CASE 
 			WHEN RESPONSE = 1
 				THEN 'Pending'
@@ -39,17 +54,23 @@ $query .= "SELECT id
 			END, CASE 
 			WHEN RESPONSE = 3
 				THEN 'Rejected'
+			END, CASE 
+			WHEN RESPONSE = 4
+				THEN '-'
+			END, CASE 
+			WHEN RESPONSE = 5
+				THEN 'Waiting'
 			END) AS response
-    ,CASE WHEN systemstatus = 1 THEN 'Active' ELSE 'Inactive' END as systemstatus
-FROM event WHERE serviceproviderid = ". $_POST['userid'] . " ";
+    ,CASE WHEN t1.systemstatus = 1 THEN 'Active' ELSE 'Inactive' END as systemstatus
+FROM event t1 LEFT JOIN user t2 ON t1.requestedbyid = t2.id WHERE serviceproviderid = ". $_POST['userid'] . " ";
 
 if(!empty($_POST["searchPhrase"]))
 {
- $query .= 'AND (event.id LIKE "%'.$_POST["searchPhrase"].'%" ';
- $query .= 'OR event.eventName LIKE "%'.$_POST["searchPhrase"].'%" ';
- $query .= 'OR event.eventLocation LIKE "%'.$_POST["searchPhrase"].'%" ';
- $query .= 'OR event.eventDate LIKE "%'.$_POST["searchPhrase"].'%" ';
- $query .= 'OR event.eventContact LIKE "%'.$_POST["searchPhrase"].'%" ) ';
+ $query .= 'AND (t1.id LIKE "%'.$_POST["searchPhrase"].'%" ';
+ $query .= 'OR t1.eventName LIKE "%'.$_POST["searchPhrase"].'%" ';
+ $query .= 'OR t1.eventLocation LIKE "%'.$_POST["searchPhrase"].'%" ';
+ $query .= 'OR t1.eventDate LIKE "%'.$_POST["searchPhrase"].'%" ';
+ $query .= 'OR t1.eventContact LIKE "%'.$_POST["searchPhrase"].'%" ) ';
 }
 
 $order_by = '';
@@ -62,7 +83,7 @@ if(isset($_POST["sort"]) && is_array($_POST["sort"]))
 }
 else
 {
- $query .= 'ORDER BY event.id DESC ';
+ $query .= 'ORDER BY t1.id DESC ';
 }
 if($order_by != '')
 {
@@ -74,17 +95,14 @@ if($records_per_page != -1)
 }
 
 $result = mysqli_query($DBcon, $query);
-
+$total_records =0;
 if($result) {
     while($row = mysqli_fetch_assoc($result))
     {
      $data[] = $row;
     }
-    $query1 = "SELECT * FROM event ";
+    $total_records = mysqli_num_rows($result);
 }
-
-$result1 = mysqli_query($DBcon, $query1);
-$total_records = mysqli_num_rows($result);
 
 $output = array(
  'current'  => intval($_POST["current"]),

@@ -6,7 +6,6 @@ ob_start();
 
 <div id="band" class="container text-left" style="margin-top:50px" >
 <h1>My Gallery</h1>
-<div class="panel-body inf-content">
     <!-- Page Put in Content-->
     <div id="band" class="container text-left" style="margin-top:50px" >
       <div class="table-responsive">

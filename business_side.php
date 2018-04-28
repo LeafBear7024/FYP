@@ -326,7 +326,7 @@ include("master.php");
             </form>
 
             <hr />
-            <div class="form-group">
+            <div class="form-group createAccount">
               <button type="submit" class="btn btn-primary" name="btn-signup" id='SignUpForBizbtn'>
               <span class="glyphicon glyphicon-log-in"></span> &nbsp; Create Account
               </button>
@@ -362,6 +362,7 @@ $('#SignUpForBizbtn').click(function(e) {
                 if(data == 1)  
                 {  
                     $('.success-create-account').show();
+                    $('.form-signin,.createAccount').hide();
                 }  
                 else  
                 {  

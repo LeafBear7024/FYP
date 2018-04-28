@@ -159,10 +159,10 @@ h1 {
       <ul class="nav navbar-nav">
         <li>  <a href="/fyp/service.php">Serivce</a></li>
         <?php if(isset($_SESSION['username'])) {?>
-          <li><a href="/fyp/myjob.php">My Job</a></li>
         <li><a href="/fyp/myevent.php">My Event</a></li>
           <?php } ?>
         <?php if(isset($_SESSION['username']) && ($_SESSION['role'] == 2 || $_SESSION['role'] == 5) ){?>
+        <li><a href="/fyp/myjob.php">My Job</a></li>
         <li><a href="/fyp/mygallery.php">My Gallery</a></li>
         <?php  } ?>
         <li><a href="/fyp/about_us.php">About us</a></li>
@@ -170,9 +170,9 @@ h1 {
         <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 3) {?>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Management</a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="/fyp/usermanagement.php">User Management</a></li>
-                <li><a class="dropdown-item" href="/fyp/eventmanagement.php">Event Management</a></li>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="/fyp/usermanagement.php">User Management</a></li>
+            <li><a class="dropdown-item" href="/fyp/eventmanagement.php">Event Management</a></li>
               </ul>
           </li>
         <?php  } ?>
@@ -181,6 +181,9 @@ h1 {
       <div class="btn-group navbar-btn navbar-right">
         <?php
          if(isset($_SESSION['username'])){
+             if(isset($_SESSION['username']) && ($_SESSION['role'] == 2 || $_SESSION['role'] == 5)) {
+                 echo "<a class=\"btn btn-danger\" href=\"getajob.php\" >Get A Job!</a>";
+             }
         ?>  
         <a class="btn btn-primary" href="myinfo.php" ><?php echo $_SESSION['username']; ?></a>
         <a class="btn btn-default" href="#" id="logout">Logout</a>
@@ -317,6 +320,7 @@ $(document).ready(function(){
                     if(data == 1)  
                     {  
                         $('.success-create-account').show();
+                        $('.form-signin').hide();
                     }  
                     else  
                     {  
@@ -349,12 +353,11 @@ $(document).ready(function(){
                      data: {username:username, password:password, role : 1},  
                      success:function(data)  
                      {   
-                          if(data == 0)  
-                          {  
+                          if(data == 0) {  
                                alert("Wrong username / password, please try again!");  
-                          }  
-                          else  
-                          {  
+                          } else if(data == 2) {
+                               alert("This user account is currently inactive, please contact us for assistance!");
+                          } else {  
                                alert("Sign in successfully!"); 
                                $('#loginModal').hide();  
                                location.href= 'index.php';  
