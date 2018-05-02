@@ -86,9 +86,12 @@ FROM event t1 LEFT JOIN user t2 ON t1.serviceproviderid = t2.id WHERE requestedb
 if(!empty($_POST["searchPhrase"]))
 {
  $query .= 'AND (t1.id LIKE "%'.$_POST["searchPhrase"].'%" ';
- $query .= 'OR t1.t1.eventName LIKE "%'.$_POST["searchPhrase"].'%" ';
+ $query .= 'OR t1.eventName LIKE "%'.$_POST["searchPhrase"].'%" ';
+ $query .= 'OR t1.eventInfo LIKE "%'.$_POST["searchPhrase"].'%" ';
  $query .= 'OR t1.eventLocation LIKE "%'.$_POST["searchPhrase"].'%" ';
  $query .= 'OR t1.eventDate LIKE "%'.$_POST["searchPhrase"].'%" ';
+ $query .= 'OR t2.username LIKE "%'.$_POST["searchPhrase"].'%" ';
+ $query .= 'OR t2.email LIKE "%'.$_POST["searchPhrase"].'%" ';
  $query .= 'OR t1.eventContact LIKE "%'.$_POST["searchPhrase"].'%" ) ';
 }
 

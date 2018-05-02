@@ -72,7 +72,7 @@ ob_start();
   <p><em>Easy to start up your event</em></p>
 
 
-  <button type="button" id="start_event" name="start_event" class="btn btn-danger center-block"  data-toggle="modal" data-target="#questionSteps">Start Event</button>
+  <button type="button" id="start_event" name="start_event" class="btn btn-danger center-block"  data-toggle="modal" >Start Event</button>
   <p> </p>
 
   <p>The Photo Partner provided a platform for user and service provider to create their event or start business easily.  The person who is beginner in photography can use our platform easy to find their first customer. Let start your event or become our business user to start your new business.
@@ -221,7 +221,11 @@ $(document).ready(function() {
       format:'Y-m-d',
       minDate: new Date()
     });
-    $('#questionSteps').modalSteps({
+    $('#start_event').click(function(e) {
+        e.preventDefault();
+        var logged = <?=isset($_SESSION['userid']) == '' ? 2 : 1?>;
+        if(logged === 1) {
+            $('#questionSteps').modalSteps({
             'completeCallback': function(){ 
                 var eventName = $('#eventName').val();
                 var eventInfo = $('#eventInfo').val();
@@ -232,19 +236,25 @@ $(document).ready(function() {
                 var eventContact = $('#eventContact').val();
                 var requestedbyid = $('#requestedbyid').val();
                 $.ajax({  
-                    url:"createevent.php",  
-                    method:"POST",  
-                    data: {eventName:eventName,eventInfo:eventInfo,eventType:eventType,eventBudget:eventBudget,eventLocation:eventLocation,eventDate:eventDate,eventContact:eventContact,serviceproviderid:0,requestedbyid:requestedbyid,response:4},  
-                    success:function(data) {  
-                        if(data == 1) {
-                            alert("Event created successfully!");
-                            window.location="myevent.php" 
-                        } else {
-                            alert("There is an error occurred, please try again later");
-                        }
-                    }  
-                });
-            }
+                        url:"createevent.php",  
+                        method:"POST",  
+                        data: {eventName:eventName,eventInfo:eventInfo,eventType:eventType,eventBudget:eventBudget,eventLocation:eventLocation,eventDate:eventDate,eventContact:eventContact,serviceproviderid:0,requestedbyid:requestedbyid,response:4},  
+                        success:function(data) {  
+                            if(data == 1) {
+                                alert("Event created successfully!");
+                                window.location="myevent.php" 
+                            } else {
+                                alert("There is an error occurred, please try again later");
+                            }
+                        }  
+                    });
+                }
+            });
+            $('#questionSteps').modal('show');
+        } else {
+            alert("Please log in before enjoying our service!");
+            $('#Ulogin').modal('show');
+        }
     });
     $('#start_event').click(function() {
 //        // check if user login, prompt login box if user has not yet logged in

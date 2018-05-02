@@ -82,14 +82,17 @@ $query .= "SELECT
 				THEN 'Waiting'
 			END) AS response
     ,CASE WHEN t1.systemstatus = 1 THEN 'Active' ELSE 'Inactive' END as systemstatus
-FROM event t1 LEFT JOIN user t2 ON t1.requestedbyid = t2.id WHERE requestedbyid != ". $_POST['userid'] . " AND (serviceproviderid = 0 OR response = 6) AND t1.systemstatus = 1";
+FROM event t1 LEFT JOIN user t2 ON t1.requestedbyid = t2.id WHERE requestedbyid != ". $_POST['userid'] . " AND (serviceproviderid = 0 OR response = 6) AND t1.systemstatus = 1 ";
 
 if(!empty($_POST["searchPhrase"]))
 {
  $query .= 'AND (t1.id LIKE "%'.$_POST["searchPhrase"].'%" ';
  $query .= 'OR t1.eventName LIKE "%'.$_POST["searchPhrase"].'%" ';
+ $query .= 'OR t1.eventInfo LIKE "%'.$_POST["searchPhrase"].'%" ';
  $query .= 'OR t1.eventLocation LIKE "%'.$_POST["searchPhrase"].'%" ';
- $query .= 'OR t1.eventDate LIKE "%'.$_POST["searchPhrase"].'%" ';
+ $query .= 'OR t1.eventDate LIKE "%'.$_POST["searchPhrase"].'%" '; 
+ $query .= 'OR t2.username LIKE "%'.$_POST["searchPhrase"].'%" ';
+ $query .= 'OR t2.email LIKE "%'.$_POST["searchPhrase"].'%" ';
  $query .= 'OR t1.eventContact LIKE "%'.$_POST["searchPhrase"].'%" ) ';
 }
 
